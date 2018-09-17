@@ -25,51 +25,58 @@
                             <div class="card-body">
                                 <div class="row">
 
-                                    <div class="col-sm-4 font-weight-bold ">תיאור המוצר:</div>
-                                    <div class="col-sm-4 font-weight-bold ">מחיר שוק:</div>
-                                    <div class="col-sm-4 font-weight-bold ">דמי השתתפות:</div>
+                                    <div class="col-sm-3 font-weight-bold text-right">תיאור המוצר:
 
-                                    <div class="col-sm-4">{{lotterie.description}}</div>
+                                        <div class="font-weight-normal text-right" >{{lotterie.description}}</div>
 
-                                    <div style="text-decoration: line-through;" class="col-sm-4">{{lotterie.marketPrice
-                                        | number}}
-                                        <span>ש"ח</span>
                                     </div>
+                                    <div class="col-sm-3 font-weight-bold text-right">מחיר שוק:
+                                        <div style="text-decoration: line-through;" class="font-weight-normal text-right">{{lotterie.marketPrice
+                                            | number}} ש"ח
+                                        </div>
 
-                                    <div class="col-sm-4">{{lotterie.lotteriePrice | number}}
-                                        <span>ש"ח</span>
                                     </div>
+                                    <div class="col-sm-3 font-weight-bold text-right">דמי השתתפות:
 
+                                        <div class="font-weight-normal text-right">{{lotterie.lotteriePrice | number}} ש"ח
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 font-weight-bold text-right">מספר סוחר:
+
+                                            <div class="font-weight-normal text-right" >#{{lotterie.sellerUserId}}</div>
+    
+                                    </div>
                                     <div class="col-sm-12 mx-auto mt-3" ng-show='{{lotterie.complete}}==100'>
                                         <div class="alert alert-danger" role="alert">
                                             <strong>אוווו!</strong> מישהו זכה לפניך :(
                                         </div>
                                     </div>
 
+                                    
+
                                 </div>
 
                                 <div>
 
-                                    <div class="col-sm-12 mx-auto mt-3" ng-hide='{{lotterie.complete}}==100'>
+                                    <div class="col-sm-12 mt-3 text-left" ng-hide='{{lotterie.complete}}==100'>
 
-                                        <button type="button" class="btn btn-warning font-weight-bold" data-toggle="modal"
+                                        <button type="button" class="btn btn-warning font-weight-bold " data-toggle="modal"
                                             data-target=".{{lotterie.id}}" ng-click="getAndCount($event, $index)">הצטרף</button>
 
+                                            <div class="text-muted" style="font-size: 0.8rem;">{{lotterie.complete}}% משתתפים</div>
                                     </div>
 
-                                    <span class="text-muted mx-auto">{{lotterie.complete}}% משתתפים</span>
 
                                 </div>
                             </div>
                         </div>
 
                         <!-- Modal -->
-                        <div class="modal fade {{lotterie.id}}" tabindex="-1" role="dialog" "
-                            aria-hidden="true">
+                        <div class="modal fade {{lotterie.id}}" tabindex="-1" role="dialog" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" >{{lotterie.productName}}</h5>
+                                        <h5 class="modal-title">{{lotterie.productName}}</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         </button>
                                     </div>
