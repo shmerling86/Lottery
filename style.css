@@ -1,0 +1,39 @@
+body,
+#inputName,
+#inputEmail,
+#inputPassword,
+#inputPasswordC,
+.r-t{
+    direction: rtl;    
+}
+
+form{
+    direction: ltr;    
+  
+}
+
+a>.btn{
+    font-size: 1.8rem;
+
+}
+
+#no-decoration{
+    text-decoration: none;
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+.bg {
+    background-image: url("img/1.jpg");
+    height: 90%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.spl{
+    letter-spacing: 1px;
+}

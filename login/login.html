@@ -1,0 +1,22 @@
+<my-navbar></my-navbar>
+<section>
+    <div class="container mt-5">
+
+        <div class="row mt-5">
+            <div class="col-sm-4 mt-5 mx-auto">
+                <form class="form-signin mt-5">
+                    <h1 class="h3 mb-3 font-weight-normal text-center">כניסה</h1>
+                    <div class="alert alert-danger" role="alert" ng-show="invalidLogin">Invalid Credentials!</div>
+                    <label for="Email" class="sr-only ">Email address</label>
+                    <input type="email" id="Email" class="form-control my-1" ng-model="email" placeholder="Email address" required autofocus>
+                    <label for="Password" class="sr-only">Password</label>
+                    <input type="password" id="Password" class="form-control my-1" ng-model="password" placeholder="Password" required>
+                    
+                    <button class="btn btn-lg btn-danger my-3 btn-block" type="submit" data-ng-disabled="myForm.$invalid" ng-click="myForm.$invalid=true;login()">כנס</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</section>
