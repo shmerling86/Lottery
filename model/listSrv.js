@@ -39,7 +39,7 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
     }
 
     function getAllCompetitors(idxOfLotterie) {
-
+        
         var async = $q.defer();
         var itemsUrl = 'https://json-server-heroku-pzqjawpbmu.now.sh/lotteries/' + idxOfLotterie
         $http.get(itemsUrl).then(function (lotterie) {

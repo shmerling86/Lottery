@@ -45,20 +45,7 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
                 $scope.completePercentage = 100
             }
 
-            // listSrv.getAllLotteries().then(function (lotteries) {
-
-            //     for (let i = 0; i < lotteries.length; i++) {
-            //         if (lotteries[i].complete == 100) {
-            //             lotteries.splice(i, 1)
-        
-            //         }
-            //     }
-            //     console.log(lotteries);
-        
-            //     $scope.lotteries = lotteries;
-        
-            // });
-
+           
             listSrv.getAllCompetitors(index).then(function (competitors) {
 
                 $scope.competitorsId = competitors
