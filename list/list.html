@@ -2,14 +2,28 @@
 <section>
     <div class="container">
         <div class="row">
-            <div class="col-sm-10 mx-auto text-center mt-5">
+            <div class="col-sm-10 text-center mx-auto">
                 <h3>רשימת ההגרלות</h3>
                 <h6 class="text-muted mb-5">חפש הגרלה ולחץ על הכפתור על מנת להצטרף, לאחר הגעה ל100% משתתפים תשלח הודעה
                     למשתתפים
-                    ולזוכה .</h6>
+                    ולזוכה.</h6>
+                <div class="text-center h6 mx-auto">
+                    <span>סנן לפי:</span>
+                    <input type="button" class="btn btn-outline-secondary  btn-sm" ng-click="kindOfSort = 'all'" value="הכל">
+                    <input type="button" class="btn btn-outline-secondary  btn-sm" ng-click="kindOfSort = 'active'" value="פעיל">
+                    <input type="button" class="btn btn-outline-secondary  btn-sm" ng-click="kindOfSort = 'completed'"
+                        value="הסתיים">
+                </div>
+                
+            </div>
+        </div>
+   
+
+        <div class="row">
+            <div class="col-sm-10 mx-auto text-center mt-5">
 
                 <div class="accordion" id="accordionExample">
-                    <div class="card" ng-repeat="lotterie in lotteries">
+                    <div class="card" ng-repeat="lotterie in lotteries | filter : sortByStatus">
                         <div class="card-header" id="{{lotterie.productName}}">
                             <h5 class="mb-0">
                                 <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#{{lotterie.id}}"
@@ -27,7 +41,7 @@
 
                                     <div class="col-sm-3 font-weight-bold text-right">תיאור המוצר:
 
-                                        <div class="font-weight-normal text-right" >{{lotterie.description}}</div>
+                                        <div class="font-weight-normal text-right">{{lotterie.description}}</div>
 
                                     </div>
                                     <div class="col-sm-3 font-weight-bold text-right">מחיר שוק:
@@ -38,13 +52,14 @@
                                     </div>
                                     <div class="col-sm-3 font-weight-bold text-right">דמי השתתפות:
 
-                                        <div class="font-weight-normal text-right">{{lotterie.lotteriePrice | number}} ש"ח
+                                        <div class="font-weight-normal text-right">{{lotterie.lotteriePrice | number}}
+                                            ש"ח
                                         </div>
                                     </div>
                                     <div class="col-sm-3 font-weight-bold text-right">מספר סוחר:
 
-                                            <div class="font-weight-normal text-right" >#{{lotterie.sellerUserId}}</div>
-    
+                                        <div class="font-weight-normal text-right">#{{lotterie.sellerUserId}}</div>
+
                                     </div>
                                     <div class="col-sm-12 mx-auto mt-3" ng-show='{{lotterie.complete}}==100'>
                                         <div class="alert alert-danger" role="alert">
@@ -52,7 +67,7 @@
                                         </div>
                                     </div>
 
-                                    
+
 
                                 </div>
 
@@ -63,7 +78,8 @@
                                         <button type="button" class="btn btn-warning font-weight-bold " data-toggle="modal"
                                             data-target=".{{lotterie.id}}" ng-click="getAndCount($event, $index)">הצטרף</button>
 
-                                            <div class="text-muted" style="font-size: 0.8rem;">{{lotterie.complete}}% משתתפים</div>
+                                        <div class="text-muted" style="font-size: 0.8rem;">{{lotterie.complete}}%
+                                            משתתפים</div>
                                     </div>
 
 

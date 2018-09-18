@@ -13,6 +13,24 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
         $location.path('/');
     }
 
+    $scope.kindOfSort = "active";
+
+    $scope.sortByStatus = function (item) {        
+
+        switch ($scope.kindOfSort) {
+            case "all":
+                return true;
+            case "active":
+                if (item.complete < 100) return true;
+                break;
+
+            case "completed":
+                if (item.complete == 100) return true;
+                break;
+        }
+        return false;
+    }
+
     $scope.lotteries = [];
 
     listSrv.getAllLotteries().then(function (lotteries) {
@@ -45,7 +63,7 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
                 $scope.completePercentage = 100
             }
 
-           
+
             listSrv.getAllCompetitors(index).then(function (competitors) {
 
                 $scope.competitorsId = competitors
