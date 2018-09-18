@@ -13,9 +13,11 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
         $location.path('/');
     }
 
+
+
     $scope.kindOfSort = "active";
 
-    $scope.sortByStatus = function (item) {        
+    $scope.sortByStatus = function (item) {
 
         switch ($scope.kindOfSort) {
             case "all":
@@ -30,39 +32,43 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
         }
         return false;
     }
-
+    
     $scope.lotteries = [];
-
+    
     listSrv.getAllLotteries().then(function (lotteries) {
-
+        
         $scope.lotteries = lotteries;
+        
 
+    }, function (error) {
+        $log.error(error)
     });
 
     $scope.completePercentage = 0;
 
     $scope.getAndCount = function (btn, index) {
-
-
+        
+        
         listSrv.getAllLotteries().then(function (lotteries) {
+            
 
             var lengOfCompetittors = lotteries[index].competitors.length
             var numOfParticipants = lotteries[index].numberOfParticipants
             var howMuchFinish = lotteries[index].complete
 
-
+            
             if (lengOfCompetittors == 0) {
-
+                
                 $scope.completePercentage = ((1 / numOfParticipants) * 100)
-
+                
             } else if (lengOfCompetittors > 0 && lengOfCompetittors < numOfParticipants) {
-
+                
                 $scope.completePercentage = ((lengOfCompetittors + 1) / numOfParticipants) * 100;
-
+                
             } else if (howMuchFinish >= 100) {
                 $scope.completePercentage = 100
             }
-
+            
 
             listSrv.getAllCompetitors(index).then(function (competitors) {
 

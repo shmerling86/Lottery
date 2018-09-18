@@ -20,7 +20,7 @@ app.factory('loginSrv', function ($http, $q) {
 
     function login(email, password) {
         var async = $q.defer();
-        var loginUrl = 'https://json-server-heroku-pzqjawpbmu.now.sh' + '/users?email=' + email + "&password=" + password;
+        var loginUrl = 'https://json-server-heroku-bhjylyubnn.now.sh' + '/users?email=' + email + "&password=" + password;
 
         $http.get(loginUrl).then(function (response) {
 
