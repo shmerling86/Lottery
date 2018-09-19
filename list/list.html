@@ -30,6 +30,14 @@
                     <div class="card" ng-repeat="lotterie in lotteries | filter : sortByStatus">
                         <div class="card-header" id="{{lotterie.productName}}">
                             <h5 class="mb-0">
+                                <span class="float-left text-danger" ng-show="{{lotterie.chance}} >= 0.1 && {{lotterie.chance}} <= 0.5">
+                                    <i class="fas fa-dice-two my-2" style="font-size:1.8rem;"></i></span>
+                                <span class="float-left text-warning" ng-show="{{lotterie.chance}} > 0.5 && {{lotterie.chance}} < 10">
+                                    <i class="fas fa-dice-four my-2" style="font-size:1.8rem;"></i></span>
+                                <span class="float-left text-success" ng-show="{{lotterie.chance}} >= 10 && {{lotterie.chance}} <= 50">
+                                    <i class="fas fa-dice-six my-2" style="font-size:1.8rem;"></i></span>
+
+
                                 <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#{{lotterie.id}}"
                                     aria-expanded="false" aria-controls="{{lotterie.id}}">{{lotterie.productName}}
                                 </button>
@@ -61,7 +69,7 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-3 font-weight-bold text-right">אחוזי זכייה:
-                                        <div class="font-weight-normal text-right">% {{lotterie.chance}}</div>
+                                        <div title='סיכוי של {{lotterie.chance}} ל100' class="font-weight-normal text-right">% {{lotterie.chance}}</div>
 
                                     </div>
                                     <div class="col-sm-12 mx-auto mt-3" ng-show='{{lotterie.complete}}==100'>
@@ -101,12 +109,14 @@
                                     </div>
                                     <div class="modal-body">
                                         <span class="text-muted">האם אתה בטוח שאתה רוצה להשתתף בהגרלה על</span>
-                                        <span class="text-muted"> {{lotterie.productName}} במחיר {{lotterie.lotteriePrice | number}} ש"ח?</span>
+                                        <span class="text-muted"> {{lotterie.productName}} במחיר
+                                            {{lotterie.lotteriePrice | number}} ש"ח?</span>
                                         <p></p>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary mx-1  btn-sm" data-dismiss="modal">ביטול</button>
-                                        <button type="button" class="btn btn-primary  btn-sm" data-dismiss="modal">אישור ותשלום</button>
+                                        <button type="button" class="btn btn-primary  btn-sm" data-dismiss="modal">אישור
+                                            ותשלום</button>
                                     </div>
                                 </div>
                             </div>
