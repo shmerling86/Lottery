@@ -11,8 +11,8 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
             this.buyerUserId = buyerUserId,
             this.isPaid = isPaid,
             this.complete = parseInt((((this.competitors.length) / this.numberOfParticipants) * 100).toFixed(0)),
-            this.chance = (100 * (1 / this.numberOfParticipants)).toFixed(1)
-        this.id = id
+            this.chance = (100 * (1 / this.numberOfParticipants)).toFixed(1),
+            this.id = id
     }
 
 
@@ -29,7 +29,6 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
                 lotteries.push(new Lotterie(lotterie.productName, lotterie.description, lotterie.marketPrice, lotterie.numberOfParticipants, lotterie.lotteriePrice,
                     lotterie.image, lotterie.sellerUserId, lotterie.competitors, lotterie.buyerUserId, lotterie.isPaid, lotterie.complete, lotterie.id, lotterie.chance));
             });
-
 
             async.resolve(lotteries);
         }, function (err) {
@@ -55,9 +54,11 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
 
     function countMeIn(idxOfLotterie, competitors, completePercentage) {
         var competitors = competitors
+
         var async = $q.defer();
         var itemsUrl = 'https://json-server-heroku-bhjylyubnn.now.sh/lotteries/' + idxOfLotterie
         var userId = loginSrv.getActiveUser().id
+
         competitors.push(userId);
 
         var patch = {
@@ -69,6 +70,7 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
 
             async.resolve(res);
         }, function (err) {
+
             async.reject(err);
         });
         return async.promise;
@@ -78,19 +80,38 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
         return Math.round(Math.random() * (max - min) + min);
     }
 
-    function lotteryGen(idxOfLotterie) {
+    function lotteryGen(idxOfLottery) {
 
         var async = $q.defer();
-        var itemsUrl = 'https://json-server-heroku-bhjylyubnn.now.sh/lotteries/' + idxOfLotterie
-        $http.get(itemsUrl).then(function (response) {            
+        var Url = 'https://json-server-heroku-bhjylyubnn.now.sh/lotteries/' + idxOfLottery
+        $http.get(Url).then(function (response) {
             var winner = getRandomNum(0, response.data["competitors"].length)
+
+
+
             async.resolve(winner);
         }, function (err) {
             async.reject(err);
         });
         return async.promise;
-
     }
+
+    function patchTheWinner(WinnerIdxOnCompetitors, idOfFinishLottery) {
+        var async = $q.defer();
+        var itemUrl = 'https://json-server-heroku-bhjylyubnn.now.sh/lotteries/' + idOfFinishLottery
+
+        var patch = {
+            WinnerIdxOnCompetitors: WinnerIdxOnCompetitors
+        }
+
+        $http.patch(itemUrl, patch).then(function (res) {
+
+            async.resolve(res);
+        }, function (err) {
+            async.reject(err);
+        });
+        return async.promise;
+    };
 
 
     return {
@@ -98,7 +119,8 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
         getAllLotteries: getAllLotteries,
         countMeIn: countMeIn,
         getAllCompetitors: getAllCompetitors,
-        lotteryGen: lotteryGen
+        lotteryGen: lotteryGen,
+        patchTheWinner: patchTheWinner
     }
 
 });

@@ -50,8 +50,6 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
 
         listSrv.getAllLotteries().then(function (lotteries) {
 
-
-
             var lengOfCompetittors = lotteries[index].competitors.length
             var numOfParticipants = lotteries[index].numberOfParticipants
             var howMuchFinish = lotteries[index].complete
@@ -69,7 +67,6 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
                 $scope.completePercentage = 100
             }
 
-           
 
             listSrv.getAllCompetitors(index).then(function (competitors) {
 
@@ -79,15 +76,21 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
 
                     btn.target.disabled = true;
 
+                    if ($scope.completePercentage == 100) {
 
-                    listSrv.lotteryGen(index).then(function (winnerId) {
+                        listSrv.lotteryGen(index).then(function (winnerId) {
+                            $scope.idOfWinner = winnerId
 
-                        $scope.idOfWinner = winnerId
-            
-                    }, function (error) {
-                        $log.error(error)
-                    });
+                            listSrv.patchTheWinner($scope.idOfWinner, index).then(function () {
 
+                            }, function (error) {
+                                $log.error(error)
+                            });
+
+                        }, function (error) {
+                            $log.error(error)
+                        });
+                    }
 
                 }, function (error) {
                     $log.error(error)
@@ -96,6 +99,9 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
             }, function (error) {
                 $log.error(error)
             });
+
+        }, function (error) {
+            $log.error(error)
         });
 
 
