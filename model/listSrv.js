@@ -12,10 +12,10 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
             this.isPaid = isPaid,
             this.complete = parseInt((((this.competitors.length) / this.numberOfParticipants) * 100).toFixed(0)),
             this.chance = (100 * (1 / this.numberOfParticipants)).toFixed(1)
-            this.id = id
+        this.id = id
     }
 
- 
+
     function getAllLotteries() {
         var lotteries = [];
 
@@ -74,12 +74,31 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
         return async.promise;
     };
 
+    function getRandomNum(min, max) {
+        return Math.round(Math.random() * (max - min) + min);
+    }
+
+    function lotteryGen(idxOfLotterie) {
+
+        var async = $q.defer();
+        var itemsUrl = 'https://json-server-heroku-bhjylyubnn.now.sh/lotteries/' + idxOfLotterie
+        $http.get(itemsUrl).then(function (response) {            
+            var winner = getRandomNum(0, response.data["competitors"].length)
+            async.resolve(winner);
+        }, function (err) {
+            async.reject(err);
+        });
+        return async.promise;
+
+    }
+
 
     return {
         Lotterie: Lotterie,
         getAllLotteries: getAllLotteries,
         countMeIn: countMeIn,
-        getAllCompetitors: getAllCompetitors
+        getAllCompetitors: getAllCompetitors,
+        lotteryGen: lotteryGen
     }
 
 });
