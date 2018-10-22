@@ -1,7 +1,7 @@
 app.controller('loginCtrl', function ($scope, $location, loginSrv) {
 
     if (loginSrv.isLoggedIn()) {
-        $location.path('/options');
+        $location.path('/list');
     }
 
     $scope.isLogged = function () {
@@ -19,7 +19,7 @@ app.controller('loginCtrl', function ($scope, $location, loginSrv) {
 
             // console.log(user.id);
             
-            $location.path('/options');
+            $location.path('/list');
 
         }, function () {
             $scope.invalidLogin = true;

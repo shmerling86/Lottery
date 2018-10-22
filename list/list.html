@@ -2,32 +2,46 @@
 <section>
     <div class="container">
         <div class="row">
-            <div class="col-sm-10 text-center mx-auto">
-                <h3>רשימת ההגרלות</h3>
-                <h6 class="text-muted mb-5">חפש הגרלה ולחץ על הכפתור על מנת להצטרף, לאחר הגעה ל100% משתתפים תשלח הודעה
-                    למשתתפים
-                    ולזוכה.</h6>
-                <div class="text-center h6 mx-auto">
-                    <span>סנן לפי:</span>
-                    <input type="button" class="btn btn-outline-secondary btn-sm" ng-class="{'active':taskfilters == 1}"
-                        ng-click="kindOfSort = 'all';taskfilters = 1" value="הכל">
+            <div class="col-sm-10 text-center mx-auto m-3">
 
-                    <input type="button" class="btn btn-outline-secondary btn-sm" ng-init="taskfilters = 0" ng-class="{'active':taskfilters == 0}"
-                        ng-click="kindOfSort = 'active';taskfilters = 0" value="פעיל">
+                <div class="float-right">
 
-                    <input type="button" class="btn btn-outline-secondary btn-sm" ng-class="{'active':taskfilters == 2}"
-                        ng-click="kindOfSort = 'completed';taskfilters = 2" value="הסתיים">
+                    <a ng-href="#!/new" id="no-decoration">
+                        <i class="fas fa-plus-circle mx-2 " title="חדש" style="font-size:1.4rem;"></i>
+                    </a>
+                    <i class="far fa-comment-alt mx-2 " title="הודעות" style="font-size:1.4rem;"></i>
+
+                    <i class="fas fa-filter mx-2" style="font-size:1.4rem;" ng-model='isHover' ng-mouseover='isHover = true'
+                        ng-mouseleave='isHover=false' title="סנן" style="font-size:1.4rem;">
+
+                        <div class="text-center h6 mx-auto d-inline-block" ng-show='isHover'>
+
+                            <input type="button" style="font-size:0.7rem;" class="btn btn-outline-muted btn-sm "
+                                ng-class="{'active':taskfilters == 1}" ng-click="kindOfSort = 'all';taskfilters = 1"
+                                value="הכל">
+
+                            <input type="button" style="font-size:0.7rem;" class="btn btn-outline-muted btn-sm" ng-init="taskfilters = 0"
+                                ng-class="{'active':taskfilters == 0}" ng-click="kindOfSort = 'active';taskfilters = 0"
+                                value="פעיל">
+
+                            <input type="button" style="font-size:0.7rem;" class="btn btn-outline-muted btn-sm"
+                                ng-class="{'active':taskfilters == 2}" ng-click="kindOfSort = 'completed';taskfilters = 2"
+                                value="הסתיים">
+                        </div>
+                    </i>
+
                 </div>
-
             </div>
         </div>
+    </div>
 
+    <div class="container">
 
-        <div class="row">
-            <div class="col-sm-10 mx-auto text-center mt-5">
+        <div class="row mt-1">
 
+            <div class="col-sm-10 mx-auto text-center mt-2">
                 <div class="accordion" id="accordionExample">
-                    <div class="card" ng-repeat="lotterie in lotteries | filter : sortByStatus">
+                    <div class="card" ng-repeat="lotterie in lotteries | filter : sortByStatus" style="background-color: #393e46; color:#eeeeee">
                         <div class="card-header" id="{{lotterie.productName}}">
                             <h5 class="mb-0">
                                 <span class="float-left text-danger" ng-show="{{lotterie.chance}} >= 0.1 && {{lotterie.chance}} <= 0.5">
@@ -39,7 +53,7 @@
 
 
                                 <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#{{lotterie.id}}"
-                                    aria-expanded="false" aria-controls="{{lotterie.id}}">{{lotterie.productName}}
+                                    aria-expanded="false" aria-controls="{{lotterie.id}}" style=" color:#eeeeee">{{lotterie.productName}}
                                 </button>
 
                             </h5>
@@ -69,7 +83,8 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-3 font-weight-bold text-right">אחוזי זכייה:
-                                        <div title='סיכוי של {{lotterie.chance}} ל100' class="font-weight-normal text-right">% {{lotterie.chance}}</div>
+                                        <div title='סיכוי של {{lotterie.chance}} ל100' class="font-weight-normal text-right">%
+                                            {{lotterie.chance}}</div>
 
                                     </div>
                                     <div class="col-sm-12 mx-auto mt-3" ng-show='{{lotterie.complete}}==100'>
@@ -86,7 +101,7 @@
 
                                     <div class="col-sm-12 mt-3 text-left" ng-hide='{{lotterie.complete}}==100'>
 
-                                        <button type="button" class="btn btn-warning font-weight-bold " data-toggle="modal"
+                                        <button type="button" class="btn btn-info font-weight-bold " data-toggle="modal"
                                             data-target=".{{lotterie.id}}" ng-click="getAndCount($event, this.$index)">הצטרף</button>
 
                                         <div class="text-muted" style="font-size: 0.8rem;">{{lotterie.complete}}%
@@ -115,7 +130,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary mx-1  btn-sm" data-dismiss="modal">ביטול</button>
-                                        <button type="button" class="btn btn-primary  btn-sm" data-dismiss="modal">אישור
+                                        <button type="button" class="btn btn-info  btn-sm" data-dismiss="modal">אישור
                                             ותשלום</button>
                                     </div>
                                 </div>
@@ -130,5 +145,7 @@
 
     </div>
 
-
+    <div class="card-footer bg-dark fixed-bottom text-muted text-center py-1">
+            CODED BY LIOR-SHMERLING
+        </div>
 </section>
