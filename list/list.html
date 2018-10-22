@@ -9,10 +9,12 @@
                     <a ng-href="#!/new" id="no-decoration">
                         <i class="fas fa-plus-circle mx-2 " title="חדש" style="font-size:1.4rem;"></i>
                     </a>
-                    <i class="far fa-comment-alt mx-2 " title="הודעות" style="font-size:1.4rem;"></i>
 
-                    <i class="fas fa-filter mx-2" style="font-size:1.4rem;" ng-model='isHover' ng-mouseover='isHover = true'
-                        ng-mouseleave='isHover=false' title="סנן" style="font-size:1.4rem;">
+                    <i class="far fa-comment-alt mx-2 btn badge1" data-badge="6" title="הודעות" style="font-size:1.4rem;"></i>
+
+
+                    <i class="fas fa-filter mx-2" style="font-size:1.15rem;" ng-model='isHover' ng-mouseover='isHover = true'
+                        ng-mouseleave='isHover=false' title="סנן">
 
                         <div class="text-center h6 mx-auto d-inline-block" ng-show='isHover'>
 
@@ -28,6 +30,13 @@
                                 ng-class="{'active':taskfilters == 2}" ng-click="kindOfSort = 'completed';taskfilters = 2"
                                 value="הסתיים">
                         </div>
+
+                    </i>
+                </div>
+                
+                <div class="float-left">
+                    <i class="far fa-question-circle" style="font-size:1.4rem;">
+
                     </i>
 
                 </div>
@@ -146,6 +155,6 @@
     </div>
 
     <div class="card-footer bg-dark fixed-bottom text-muted text-center py-1">
-            CODED BY LIOR-SHMERLING
-        </div>
+        CODED BY LIOR-SHMERLING
+    </div>
 </section>

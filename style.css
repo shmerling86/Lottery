@@ -48,12 +48,25 @@ body, html {
     letter-spacing: 1px;
 }
 
-/* .visible {
-  visibility: visible;
-}
-.invisible {
-  visibility: hidden;
-} */
+
+.badge1 {
+    position:relative;
+ }
+ .badge1[data-badge]:after {
+    content: attr(data-badge);
+    position: absolute;
+    top: 0px;
+    right: 5px;
+    font-size: .5em;
+    background: red;
+    color: white;
+    width: 15px;
+    height: 15px;
+    text-align: center;
+    line-height: 14px;
+    border-radius: 50%;
+    box-shadow: 0 0 1px #333;
+ }
 
 .active{
     background-color: #6c757d;
