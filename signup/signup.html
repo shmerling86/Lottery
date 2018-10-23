@@ -9,15 +9,15 @@
                         <form class="form-signin">
                                 <h1 class="h3 mb-3 font-weight-normal text-center">הרשמה</h1>
                                 <label for="name" class="sr-only">Name</label>
-                                <input type="text" ng-model='fullName' id="inputName" class="form-control my-1" placeholder="שם מלא">
+                                <input type="text" ng-model='fullName' id="inputName" class="form-control my-1" placeholder="שם מלא" autofocus>
                                 <label for="inputEmail" class="sr-only ">Email address</label>
-                                <input type="email" ng-model='email' id="inputEmail" class="form-control my-1" placeholder="אי-מייל" required autofocus>
+                                <input type="email" ng-model='email' id="inputEmail" class="form-control my-1" placeholder="אי-מייל" required >
                                 <label for="inputPassword" class="sr-only">Password</label>
                                 <input type="password" ng-model='password' id="inputPassword" class="form-control my-1" placeholder="סיסמה" required>
                                 <label for="inputPasswordC" class="sr-only">confirm Password</label>
                                 <input type="password"  id="inputPasswordC" class="form-control my-1" placeholder="שוב סיסמה" required>
                                 
-                                <button class="btn btn-lg btn-primary my-3 btn-block" data-ng-disabled="myForm.$invalid" ng-click="myForm.$invalid=true;addUser()" type="submit">אשר</button>
+                                <button class="btn btn-lg btn-info my-3 btn-block" data-ng-disabled="myForm.$invalid" ng-click="myForm.$invalid=true;addUser()" type="submit">אשר</button>
                             </form>
             
                 </form>

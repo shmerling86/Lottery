@@ -10,19 +10,19 @@
 
                     <div class="form-row font-weight-bold">
                         <label for="productName">שם המוצר</label>
-                        <input type="text" id="name" ng-model="productName" maxlength="30" placeholder="טויוטה קורולה 2010" class="form-control text-muted mb-2 font-italic">
+                        <input type="text" id="name" ng-model="productName" maxlength="30" placeholder="" class="form-control text-muted mb-2 font-italic" autofocus>
                     </div>
 
                     <div class="form-row font-weight-bold">
                         <label for="description">תיאור המוצר</label>
-                        <textarea id="description" ng-model="description" maxlength="60" cols="30" rows="2" placeholder="שמורה יד ראשונה מרופא" class="form-control text-muted mb-2 font-italic"></textarea>
+                        <textarea id="description" ng-model="description" maxlength="60" cols="30" rows="2" placeholder="" class="form-control text-muted mb-2 font-italic"></textarea>
                     </div>
 
                     <div class="form-row font-weight-bold">
 
                         <div class="col-sm-6 text-right">
                             <label for="marketPrice">מחיר שוק (ש"ח)</label>
-                            <input  id="marketPrice" ng-model="marketPrice"  placeholder='99,999' class="form-control text-muted mb-2 font-italic"
+                            <input  id="marketPrice" ng-model="marketPrice"  placeholder='' class="form-control text-muted mb-2 font-italic"
                             
                             oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                             type = "number"
@@ -32,7 +32,7 @@
                        
                         <div class="col-sm-6 text-right">
                                 <label for="numberOfParticipants">מספר משתתפים</label>
-                                <input  id="numberOfParticipants" ng-model="numberOfParticipants" placeholder='999' class="form-control text-muted mb-2 font-italic"
+                                <input  id="numberOfParticipants" ng-model="numberOfParticipants" placeholder='' class="form-control text-muted mb-2 font-italic"
 
                                 oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                 type = "number"
