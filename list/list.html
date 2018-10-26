@@ -85,29 +85,29 @@
                         <div id="{{lotterie.id}}" class="collapse" aria-labelledby="{{lotterie.productName}}"
                             data-parent="#accordionExample">
 
-                            <div class="card-body mb-5">
+                            <div class="card-body mb-1">
                                 <div class="row">
 
                                     <div class="col-sm-3 font-weight-bold text-right">תיאור המוצר:
 
-                                        <div class="font-weight-normal text-right">{{lotterie.description}}</div>
+                                        <div class="font-weight-normal text-right" style="font-size:0.8rem;">{{lotterie.description}}</div>
 
                                     </div>
                                     <div class="col-sm-3 font-weight-bold text-right">מחיר שוק:
-                                        <div style="text-decoration: line-through;" class="font-weight-normal text-right">{{lotterie.marketPrice
+                                        <div style="font-size:0.8rem;text-decoration: line-through;" class="font-weight-normal text-right" >{{lotterie.marketPrice
                                             | number}} ש"ח
                                         </div>
 
                                     </div>
                                     <div class="col-sm-3 font-weight-bold text-right">דמי השתתפות:
 
-                                        <div class="font-weight-normal text-right">{{lotterie.lotteriePrice |
+                                        <div class="font-weight-normal text-right" style="font-size:0.8rem;">{{lotterie.lotteriePrice |
                                             number}}
                                             ש"ח
                                         </div>
                                     </div>
                                     <div class="col-sm-3 font-weight-bold text-right">אחוזי זכייה:
-                                        <div class="font-weight-normal text-right">%
+                                        <div style="font-size:0.8rem;" class="font-weight-normal text-right">%
                                             {{lotterie.chance}}</div>
 
                                     </div>
