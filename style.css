@@ -48,7 +48,13 @@ body, html {
     letter-spacing: 1px;
 }
 
-
+.notificationBox{
+    position: absolute;
+    z-index:1;
+    right: 3%;
+    top: 13px;
+    padding: 0 3px;
+}
 .active{
     background-color: #6c757d;
     color: #eeeeee;
@@ -88,6 +94,6 @@ body, html {
     }
 
     .bg {
-        min-height: 84%; 
+        min-height: 89%; 
     }
 }
