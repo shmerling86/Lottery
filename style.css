@@ -54,6 +54,7 @@ body, html {
     right: 3%;
     top: 13px;
     padding: 0 3px;
+    margin-bottom:5rem;
 }
 .active{
     background-color: #6c757d;
