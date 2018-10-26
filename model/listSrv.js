@@ -1,4 +1,5 @@
 app.factory('listSrv', function ($http, $q, loginSrv) {
+
     function Lotterie(productName, description, marketPrice, numberOfParticipants, lotteriePrice, image, sellerUserId, competitors, buyerUserId, isPaid, complete, id) {
         this.productName = productName,
             this.description = description,
@@ -14,7 +15,6 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
             this.chance = (100 * (1 / this.numberOfParticipants)).toFixed(1),
             this.id = id
     }
-
 
     function getAllLotteries() {
         var lotteries = [];
@@ -50,7 +50,6 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
         });
         return async.promise;
     };
-
 
     function countMeIn(idxOfLotterie, competitors, completePercentage) {
         var competitors = competitors

@@ -38,7 +38,7 @@ body, html {
 
 .bg {
     background-image: url("img/1.jpg"); 
-    height: 90%; 
+    height: 95%; 
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -77,6 +77,10 @@ body, html {
     border-radius: 50%;
     box-shadow: 0 0 1px #333;
  }
+
+ .card:last-child {
+    margin-bottom: 3rem;
+}
 
 @media only screen and (max-width: 481px) {
     .card-group {

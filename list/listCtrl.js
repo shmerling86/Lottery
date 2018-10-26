@@ -13,7 +13,10 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
         $location.path('/');
     }
 
-
+    $scope.custom = true;
+    $scope.toggleCustom = function() {
+        $scope.custom = $scope.custom === false ? true: false;
+    };
 
     $scope.kindOfSort = "active";
 
@@ -45,8 +48,10 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
     });
 
     $scope.completePercentage = 0;
+    // $scope.competitors = [];
 
     $scope.getAndCount = function (btn, index) {
+
 
         listSrv.getAllLotteries().then(function (lotteries) {
 
@@ -66,6 +71,15 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
             } else if (howMuchFinish >= 100) {
                 $scope.completePercentage = 100
             }
+
+
+                // for (var j = 0; j < lotteries[index].competitors.length; j++) {
+
+                //     if (lotteries[index].competitors[j] === loginSrv.getActiveUser().id) {
+                //         console.log(loginSrv.getActiveUser().id);
+
+                //     }
+                // }
 
 
             listSrv.getAllCompetitors(index).then(function (competitors) {

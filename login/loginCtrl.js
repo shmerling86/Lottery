@@ -14,11 +14,10 @@ app.controller('loginCtrl', function ($scope, $location, loginSrv) {
 
     $scope.login = function () {
         $scope.invalidLogin = false;
+        
 
         loginSrv.login($scope.email, $scope.password).then(function (user) {
 
-            // console.log(user.id);
-            
             $location.path('/list');
 
         }, function () {

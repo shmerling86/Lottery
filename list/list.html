@@ -1,5 +1,6 @@
 <my-navbar></my-navbar>
 <section>
+
     <div class="container">
         <div class="row">
             <div class="col-sm-10 text-center mx-auto m-3">
@@ -10,7 +11,8 @@
                         <i class="fas fa-plus-circle mx-2 " title="חדש" style="font-size:1.4rem;"></i>
                     </a>
 
-                    <i class="far fa-comment-alt mx-2 btn badge1" data-badge="5" title="הודעות" style="font-size:1.4rem;"></i>
+                    <i class="far fa-comment-alt mx-2 btn badge1" data-badge="5" title="הודעות" ng-click="toggleCustom()"
+                        style="font-size:1.4rem;"></i>
 
 
                     <i class="fas fa-filter mx-2" style="font-size:1.15rem;" ng-model='isHover' ng-mouseover='isHover = true'
@@ -35,60 +37,31 @@
                     </i>
                 </div>
 
-                <!-- <div class="float-left">
-                   
-
-                </div> -->
-
-                <!-- <div class="container mx-auto" ng-show='isHoverT'>
-                    <div class="row">
-                        <div class="col-sm-10">
-                            <div class="card-group">
-
-                                <div class="card text-dark bg-danger">
-                                    <div class="card-header" style="font-size:1.8rem;">
-                                        <h5 class="card-title text-right d-inline">סיכוי נמוך</h5>
-                                        <span class="float-left text-dark">
-                                            <i class="fas fa-dice-two"></i>
-                                        </span>
-                                    </div>
-
-                                </div>
-
-                                <div class="card text-dark bg-warning mx-1">
-                                    <div class="card-header" style="font-size:1.8rem;">
-                                        <h5 class="card-title text-right d-inline">סיכוי בינוני</h5>
-                                        <span class="float-left text-dark">
-                                            <i class="fas fa-dice-four"></i>
-                                        </span>
-                                    </div>
-
-                                </div>
-
-                                <div class="card text-dark bg-success">
-                                    <div class="card-header" style="font-size:1.8rem;">
-                                        <h5 class="card-title text-right d-inline">סיכוי גבוה</h5>
-                                        <span class="float-left text-dark">
-                                            <i class="fas fa-dice-six"></i>
-                                        </span>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-
             </div>
         </div>
     </div>
 
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div style="position:absolute;z-index:1;">
+                    <div class="list-group text-right ">
+
+                        <li class="list-group-item shadow p-3 bg-white" ng-hide="custom" ng-repeat="lotterie in lotteries"><span
+                                class="text-left text-muted" style="font-size: 0.6rem">22/10/2018 9:31</span> <span
+                                class="text-right" style="font-size: 0.8rem">הצטרפת
+                                להגרלה על
+                                {{lotterie.productName}}.</span>
+                        </li>
+                        <!-- <span ng-show="custom"></span> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="container">
-
         <div class="row mt-1">
-
             <div class="col-sm-10 mx-auto text-center mt-2">
                 <div class="accordion" id="accordionExample">
                     <div class="card" ng-repeat="lotterie in lotteries | filter : sortByStatus" style="background-color: #393e46; color:#eeeeee">
@@ -113,7 +86,7 @@
                         <div id="{{lotterie.id}}" class="collapse" aria-labelledby="{{lotterie.productName}}"
                             data-parent="#accordionExample">
 
-                            <div class="card-body">
+                            <div class="card-body mb-5">
                                 <div class="row">
 
                                     <div class="col-sm-3 font-weight-bold text-right">תיאור המוצר:
@@ -135,11 +108,11 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-3 font-weight-bold text-right">אחוזי זכייה:
-                                        <div title='סיכוי של {{lotterie.chance}} ל100' class="font-weight-normal text-right">%
+                                        <div class="font-weight-normal text-right">%
                                             {{lotterie.chance}}</div>
 
                                     </div>
-                                    <div class="col-sm-12 mx-auto mt-3" ng-show='{{lotterie.complete}}==100'>
+                                    <div class="col-sm-12 mx-auto mt-5" ng-show='{{lotterie.complete}}==100'>
                                         <div class="alert alert-danger" role="alert">
                                             <strong>ההגרלה הסתיימה! </strong>לא ניתן להצטרף להגרלה זו.
                                         </div>
@@ -149,24 +122,23 @@
 
                                 </div>
 
-                                <div>
 
-                                    <div class="col-sm-12 mt-3 text-left" ng-hide='{{lotterie.complete}}==100'>
+                                <div class="col-sm-12 mt-5 text-left" ng-hide='{{lotterie.complete}}==100'>
 
-                                        <button type="button" class="btn btn-info font-weight-bold " data-toggle="modal"
-                                            data-target=".{{lotterie.id}}" ng-click="getAndCount($event, this.$index)">הצטרף</button>
+                                    <button type="button" class="btn btn-info font-weight-bold " data-toggle="modal"
+                                        data-target=".{{lotterie.id}}" ng-click="getAndCount($event, this.$index);">הצטרף</button>
 
-                                        <div class="text-muted" style="font-size: 0.8rem;">{{lotterie.complete}}%
-                                            משתתפים</div>
-                                    </div>
-
+                                    <div class="text-muted" style="font-size: 0.8rem;">{{lotterie.complete}}%
+                                        משתתפים</div>
 
                                 </div>
+
+
                             </div>
                         </div>
 
                         <!-- Modal -->
-                        <div class="modal fade {{lotterie.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class=" mt-5 modal fade {{lotterie.id}}" tabindex="-1" role="dialog" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -197,7 +169,8 @@
 
     </div>
 
-    <div class="card-footer bg-dark fixed-bottom text-muted text-center py-1">
+    <div class="card-footer bg-dark fixed-bottom text-muted text-center py-1" style="font-size: 0.8rem">
         CODED BY LIOR-SHMERLING
     </div>
+
 </section>
