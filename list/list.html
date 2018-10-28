@@ -4,20 +4,17 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-10 text-center mx-auto m-3">
-
                 <div class="float-right">
+                    <div class="numOfMsg">{{numOfMsg}}</div>
+                    <i class="far fa-comment-alt mx-2 btn p-0" title="הודעות" ng-click="toggleCustom()" style="font-size:1.4rem;">
+                    </i>
 
                     <a ng-href="#!/new" id="no-decoration">
-                        <i class="fas fa-plus-circle mx-2 " title="חדש" style="font-size:1.4rem;"></i>
+                        <i class="fas fa-plus-circle mx-2 " title="חדש" style="font-size:1.2rem;"></i>
                     </a>
-
-                    <i class="far fa-comment-alt mx-2 btn badge1" data-badge="5" title="הודעות" ng-click="toggleCustom()"
-                        style="font-size:1.4rem;"></i>
-
 
                     <i class="fas fa-filter mx-2" style="font-size:1.15rem;" ng-model='isHover' ng-mouseover='isHover = true'
                         ng-mouseleave='isHover=false' title="סנן">
-
 
                         <div class="text-center d-inline-block" ng-show='isHover'>
 
@@ -35,7 +32,6 @@
                         </div>
                     </i>
                 </div>
-
             </div>
         </div>
     </div>
@@ -46,11 +42,11 @@
                 <div class="notificationBox">
                     <div class="list-group text-right ">
 
-                        <li class="list-group-item shadow p-3 bg-white" ng-hide="custom" ng-repeat="lotterie in lotteries"><span
-                                class="text-left text-muted" style="font-size: 0.6rem">   22/10/2018 9:31   </span> 
-                                <span class="text-right mr-3" style="font-size: 0.8rem">
-                                    הצטרפת להגרלה על
-                                {{lotterie.productName}}.</span>
+                        <li class="list-group-item shadow bg-white" ng-hide="custom" ng-repeat="competitor in competitors">
+                                <span class="text-left text-muted" style="font-size: 0.6rem"> {{joinDate}} </span>
+                            <span class="text-right mr-3" style="font-size: 0.8rem">
+                                הצטרפת להגרלה על
+                                {{competitor.productName}}.</span>
                         </li>
                         <!-- <span ng-show="custom"></span> -->
                     </div>
@@ -65,6 +61,7 @@
                 <div class="accordion" id="accordionExample">
                     <div class="card" ng-repeat="lotterie in lotteries | filter : sortByStatus" style="background-color: #393e46; color:#eeeeee">
                         <div class="card-header" id="{{lotterie.productName}}">
+
                             <h5 class="mb-0">
                                 <span class="float-left text-danger" ng-show="{{lotterie.chance}} >= 0.1 && {{lotterie.chance}} <= 0.5">
                                     <i class="fas fa-dice-two my-2" style="font-size:1.8rem;"></i></span>
@@ -101,7 +98,8 @@
                                     </div> -->
                                     <div class="col-sm-3 font-weight-bold text-right py-2">דמי השתתפות:
 
-                                        <div class="font-weight-normal text-right" style="font-size:0.8rem;">{{lotterie.lotteriePrice |
+                                        <div class="font-weight-normal text-right" style="font-size:0.8rem;">{{lotterie.lotteriePrice
+                                            |
                                             number}}
                                             ש"ח
                                         </div>
@@ -137,7 +135,7 @@
                         </div>
 
                         <!-- Modal -->
-                        <div class=" mt-5 modal fade {{lotterie.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal fade {{lotterie.id}}" tabindex="-1" role="dialog" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">

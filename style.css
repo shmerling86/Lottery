@@ -66,14 +66,10 @@ body, html {
     color: #393e46;
 }
 
-.badge1 {
-    position:relative;
- }
- .badge1[data-badge]:after {
-    content: attr(data-badge);
+.numOfMsg{
     position: absolute;
-    top: 0px;
-    right: 5px;
+    top: -4%;
+    right: 2%;
     font-size: .5em;
     background: red;
     color: white;
@@ -83,7 +79,7 @@ body, html {
     line-height: 13px;
     border-radius: 50%;
     box-shadow: 0 0 1px #333;
- }
+}
 
  .card:last-child {
     margin-bottom: 3rem;
@@ -96,5 +92,9 @@ body, html {
 
     .bg {
         min-height: 89%; 
+    }
+
+    .numOfMsg{
+        right: 5%;
     }
 }

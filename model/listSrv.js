@@ -51,6 +51,27 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
         return async.promise;
     };
 
+    function dateTheJoin(time, index) {
+
+        var async = $q.defer();
+        var userId = loginSrv.getActiveUser().id
+        var itemsUrl = 'https://json-server-heroku-bhjylyubnn.now.sh/users/' + userId
+
+
+        var patch = {
+            joinDate: time
+        }
+
+        $http.patch(itemsUrl, patch).then(function (res) {
+
+            async.resolve(res);
+        }, function (err) {
+
+            async.reject(err);
+        });
+        return async.promise;
+    };
+
     function countMeIn(idxOfLotterie, competitors, completePercentage) {
         var competitors = competitors
 
@@ -119,7 +140,8 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
         countMeIn: countMeIn,
         getAllCompetitors: getAllCompetitors,
         lotteryGen: lotteryGen,
-        patchTheWinner: patchTheWinner
+        patchTheWinner: patchTheWinner,
+        dateTheJoin: dateTheJoin
     }
 
 });
