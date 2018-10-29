@@ -1,20 +1,14 @@
 <my-navbar></my-navbar>
+
 <section>
 
     <div class="container">
         <div class="row">
+            
             <div class="col-sm-10 text-center mx-auto m-3">
                 <div class="float-right">
-                    <div class="numOfMsg">{{numOfMsg}}</div>
-                    <i class="far fa-comment-alt mx-2 btn p-0" title="הודעות" ng-click="toggleCustom()" style="font-size:1.4rem;">
-                    </i>
-
-                    <a ng-href="#!/new" id="no-decoration">
-                        <i class="fas fa-plus-circle mx-2 " title="חדש" style="font-size:1.2rem;"></i>
-                    </a>
-
-                    <i class="fas fa-filter mx-2" style="font-size:1.15rem;" ng-model='isHover' ng-mouseover='isHover = true'
-                        ng-mouseleave='isHover=false' title="סנן">
+                    <i class="fas fa-filter mx-2" ng-model='isHover' ng-mouseover='isHover = true' ng-mouseleave='isHover=false'
+                        title="סנן">
 
                         <div class="text-center d-inline-block" ng-show='isHover'>
 
@@ -32,6 +26,16 @@
                         </div>
                     </i>
                 </div>
+                <div class="float-left">
+                    <div ng-show="participation>0" class="numOfMsg">{{participation}}</div>
+                    <i class="far fa-envelope mx-2 btn p-0 font-weight-bold" title="הודעות" ng-click="toggleCustom()"
+                        style="font-size:1.25rem;"></i>
+
+                    <a ng-href="#!/new" id="no-decoration">
+                        <i class="fas fa-plus-circle mx-2 " title="חדש"></i>
+                    </a>
+                </div>
+
             </div>
         </div>
     </div>
@@ -39,16 +43,16 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
+
                 <div class="notificationBox">
                     <div class="list-group text-right ">
 
-                        <li class="list-group-item shadow bg-white" ng-hide="custom" ng-repeat="competitor in competitors">
-                                <span class="text-left text-muted" style="font-size: 0.6rem"> {{joinDate}} </span>
+                        <li class="list-group-item shadow bg-white" ng-hide="custom" ng-repeat="participation in participations">
+                            <span class="text-left text-muted" style="font-size: 0.6rem">{{clickTimes}}</span>
                             <span class="text-right mr-3" style="font-size: 0.8rem">
                                 הצטרפת להגרלה על
-                                {{competitor.productName}}.</span>
+                                {{participation.lotteryN}}.</span>
                         </li>
-                        <!-- <span ng-show="custom"></span> -->
                     </div>
                 </div>
             </div>

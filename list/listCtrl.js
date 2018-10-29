@@ -14,14 +14,27 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
     }
 
     $scope.custom = true;
-    $scope.toggleCustom = function () {
-        $scope.custom = $scope.custom === false ? true : false;
-        if ($scope.custom == false) {
-            moment.locale('he');
+    $scope.productName = []
 
-            $scope.timeOpen = moment(new Date());
-                    
-            $scope.joinDate = $scope.clickTime.from($scope.timeOpen);
+    $scope.toggleCustom = function () {
+
+        $scope.custom = $scope.custom === false ? true : false;
+
+        if ($scope.custom == false) {
+
+            listSrv.getJoinDate().then(function (lotteryDataParticipation) {
+
+                $scope.participations = lotteryDataParticipation
+
+                for (var i = 0; i < $scope.participations.length; i++) {
+                    moment.locale('he');
+                    $scope.clickTimes = (moment($scope.participations[i]['joinDate']).fromNow())
+                    $scope.productName.push($scope.participations[i]['lotteryN'])
+                }
+
+            }, function (error) {
+                $log.error(error)
+            });
 
         }
 
@@ -48,7 +61,6 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
     $scope.lotteries = [];
     $scope.competitors = [];
 
-    $scope.numOfMsg = 0;
 
     listSrv.getAllLotteries().then(function (lotteries) {
 
@@ -62,11 +74,14 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
 
     $scope.getAndCount = function (btn, index) {
         moment.locale('he');
+        $scope.clickTime = moment();
 
-        $scope.clickTime = moment(new Date());
-    
 
-        $scope.numOfMsg++
+
+        listSrv.dateTheJoin($scope.clickTime, $scope.lotteries[index]['productName']).then(function (participation) {
+            $scope.participation = participation.length
+        });
+
 
         $scope.competitors.push($scope.lotteries[index]);
 
@@ -129,7 +144,6 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
 
 
     };
-
 
 
 });
