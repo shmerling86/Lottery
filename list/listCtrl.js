@@ -14,7 +14,7 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
     }
 
     $scope.custom = true;
-    $scope.productName = []
+
 
     $scope.toggleCustom = function () {
 
@@ -22,14 +22,16 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
 
         if ($scope.custom == false) {
 
+            $scope.participation = 0;
+
             listSrv.getJoinDate().then(function (lotteryDataParticipation) {
-
+                
                 $scope.participations = lotteryDataParticipation
-
+                
                 for (var i = 0; i < $scope.participations.length; i++) {
                     moment.locale('he');
-                    $scope.clickTimes = (moment($scope.participations[i]['joinDate']).fromNow())
-                    $scope.productName.push($scope.participations[i]['lotteryN'])
+                    $scope.participations[i]['joinDate'] = moment($scope.participations[i]['joinDate']).fromNow()
+                    
                 }
 
             }, function (error) {
@@ -74,7 +76,7 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
 
     $scope.getAndCount = function (btn, index) {
         moment.locale('he');
-        $scope.clickTime = moment();
+        $scope.clickTime = moment().format();
 
 
 

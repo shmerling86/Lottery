@@ -1,4 +1,4 @@
-app.controller('newCtrl', function ($scope, newSrv, $location, loginSrv, listSrv) {
+app.controller('newCtrl', function ($scope, newSrv, $location, loginSrv) {
 
     if (!loginSrv.isLoggedIn()) {
         $location.path('/');

@@ -59,12 +59,8 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
         var itemsUrl = 'https://json-server-heroku-bhjylyubnn.now.sh/users/' + userId
 
         $http.get(itemsUrl).then(function (lottery) {
-        //    moment.locale('he');
-
-            // for (var i = 0; i < participation.length; i++) {
-            //     console.log(lottery.data.participation[i]['joinDate']);
-            // } 
-
+       
+// console.log(lottery.data.participation);
 
             async.resolve(lottery.data.participation);
         }, function (err) {
