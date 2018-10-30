@@ -12,15 +12,15 @@
 
                         <div class="text-center d-inline" ng-show='isHover'>
 
-                            <input type="button" style="font-size:0.7rem;" class="btn btn-outline-muted btn-sm "
+                            <input type="button" style="font-size:0.8rem;" class="btn btn-outline-muted btn-sm "
                                 ng-class="{'active':taskfilters == 1}" ng-click="kindOfSort = 'all';taskfilters = 1"
                                 value="הכל">
 
-                            <input type="button" style="font-size:0.7rem;" class="btn btn-outline-muted btn-sm" ng-init="taskfilters = 0"
+                            <input type="button" style="font-size:0.8rem;" class="btn btn-outline-muted btn-sm" ng-init="taskfilters = 0"
                                 ng-class="{'active':taskfilters == 0}" ng-click="kindOfSort = 'active';taskfilters = 0"
                                 value="פעיל">
 
-                            <input type="button" style="font-size:0.7rem;" class="btn btn-outline-muted btn-sm"
+                            <input type="button" style="font-size:0.8rem;" class="btn btn-outline-muted btn-sm"
                                 ng-class="{'active':taskfilters == 2}" ng-click="kindOfSort = 'completed';taskfilters = 2"
                                 value="הסתיים">
                         </div>
@@ -28,9 +28,9 @@
                 </div>
                 <div class="float-left">
                     <div ng-show="participation>0" class="numOfMsg">{{participation}}</div>
-                    <i class="fas fa-bell mx-2 btn p-0" title="הודעות" ng-click="toggleCustom()" style="font-size:1.25rem;"></i>
+                    <i class="fas fa-bell mx-2 btn " title="הודעות" ng-click="toggleCustom()" style="font-size:1.25rem;"></i>
 
-                    <a ng-href="#!/new" id="no-decoration">
+                    <a ng-href="#!/new" >
                         <i class="fas fa-plus-circle mx-2 " title="חדש"></i>
                     </a>
                 </div>

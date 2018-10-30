@@ -7,6 +7,8 @@ a{
     color:#393e46;
 }
 
+
+
 body,
 #inputName,
 #inputEmail,
@@ -27,8 +29,10 @@ a>.btn{
 
 }
 
-#no-decoration{
-    text-decoration: none;
+
+a:hover{
+    color:#393e46;
+
 }
 
 body, html {
@@ -95,7 +99,8 @@ body, html {
     }
 
     .numOfMsg{
-        right: 80%;
+        right: 77%;
+    top: 11%;
     }
 
     .notificationBox{
