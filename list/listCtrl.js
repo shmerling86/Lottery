@@ -14,24 +14,22 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
     }
 
     $scope.custom = true;
+    $scope.userId = loginSrv.getActiveUser().id;
 
 
     $scope.toggleCustom = function () {
+        $scope.participation = 0;
 
         $scope.custom = $scope.custom === false ? true : false;
-
         if ($scope.custom == false) {
-
-            $scope.participation = 0;
-
             listSrv.getJoinDate().then(function (lotteryDataParticipation) {
-                
+
                 $scope.participations = lotteryDataParticipation
-                
+
+
                 for (var i = 0; i < $scope.participations.length; i++) {
                     moment.locale('he');
                     $scope.participations[i]['joinDate'] = moment($scope.participations[i]['joinDate']).fromNow()
-                    
                 }
 
             }, function (error) {
@@ -60,6 +58,8 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
         return false;
     }
 
+   
+
     $scope.lotteries = [];
     $scope.competitors = [];
 
@@ -81,7 +81,9 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
 
 
         listSrv.dateTheJoin($scope.clickTime, $scope.lotteries[index]['productName']).then(function (participation) {
+
             $scope.participation = participation.length
+
         });
 
 

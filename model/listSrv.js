@@ -51,16 +51,16 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
         return async.promise;
     };
 
+
+    var participation = [];
     function getJoinDate() {
 
         var async = $q.defer();
-        var userId = loginSrv.getActiveUser().id
+        var userId = loginSrv.getActiveUser().id;
 
         var itemsUrl = 'https://json-server-heroku-bhjylyubnn.now.sh/users/' + userId
 
         $http.get(itemsUrl).then(function (lottery) {
-       
-// console.log(lottery.data.participation);
 
             async.resolve(lottery.data.participation);
         }, function (err) {
@@ -69,7 +69,6 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
         return async.promise;
     };
 
-    var participation = [];
     function dateTheJoin(time, index) {
 
         var async = $q.defer();

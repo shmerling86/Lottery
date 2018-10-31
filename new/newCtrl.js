@@ -10,8 +10,8 @@ app.controller('newCtrl', function ($scope, newSrv, $location, loginSrv) {
     $scope.numberOfParticipants = null;
     $scope.lotteriePrice = function () {
         return $scope.marketPrice / $scope.numberOfParticipants
-    };
-    
+    };    
+
     $scope.sellerUserId = loginSrv.getActiveUser().id;
     $scope.competitors = [];
     $scope.complete = 0;

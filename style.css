@@ -73,7 +73,7 @@ body, html {
 .numOfMsg{
     position: absolute;
     top: -4%;
-    right: 91%;
+    right: 14%;
     font-size: .5em;
     background: red;
     color: white;
@@ -88,6 +88,18 @@ body, html {
  .card:last-child {
     margin-bottom: 3rem;
 }
+.close-btn{
+    position: absolute;
+    font-size: 0.6rem;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    top: 97%;
+    right: 50%;
+    background-color: #bbb;
+
+}
 
 @media only screen and (max-width: 481px) {
     .card-group {
@@ -99,8 +111,9 @@ body, html {
     }
 
     .numOfMsg{
-        right: 77%;
-    top: 11%;
+        position: absolute;
+        right: 14%;
+        top: 11%;
     }
 
     .notificationBox{
