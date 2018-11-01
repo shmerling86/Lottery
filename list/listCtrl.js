@@ -14,7 +14,9 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
     }
 
     $scope.custom = true;
-    $scope.userId = loginSrv.getActiveUser().id;
+    // $scope.userId = loginSrv.getActiveUser().id;
+
+
 
 
     $scope.toggleCustom = function () {
@@ -22,9 +24,9 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
 
         $scope.custom = $scope.custom === false ? true : false;
         if ($scope.custom == false) {
-            listSrv.getJoinDate().then(function (lotteryDataParticipation) {
+            listSrv.getJoinDate().then(function (userDataParticipation) {
 
-                $scope.participations = lotteryDataParticipation
+                $scope.participations = userDataParticipation
 
 
                 for (var i = 0; i < $scope.participations.length; i++) {
@@ -52,13 +54,13 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
                 break;
 
             case "completed":
-                if (item.complete == 100) return true;
+                if (item.complete >= 100) return true;
                 break;
         }
         return false;
     }
 
-   
+
 
     $scope.lotteries = [];
     $scope.competitors = [];
@@ -75,15 +77,25 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
     $scope.completePercentage = 0;
 
     $scope.getAndCount = function (btn, index) {
+        console.log(index);
+        
         moment.locale('he');
         $scope.clickTime = moment().format();
 
 
+        listSrv.getJoinDate().then(function (userDataParticipation) {
+            $scope.participations = userDataParticipation
 
-        listSrv.dateTheJoin($scope.clickTime, $scope.lotteries[index]['productName']).then(function (participation) {
+            listSrv.dateTheJoin($scope.clickTime, $scope.lotteries[index]['productName'], $scope.participations).then(function (participation) {
 
-            $scope.participation = participation.length
+                $scope.participation = participation.length
 
+            }, function (error) {
+                $log.error(error)
+            });
+
+        }, function (error) {
+            $log.error(error)
         });
 
 

@@ -88,6 +88,7 @@ body, html {
  .card:last-child {
     margin-bottom: 3rem;
 }
+
 .close-btn{
     position: absolute;
     font-size: 0.6rem;
@@ -95,10 +96,15 @@ body, html {
     border-radius: 50%;
     width: 15px;
     height: 15px;
-    top: 97%;
     right: 50%;
+    top:95%;
     background-color: #bbb;
+}
 
+.list-group{
+    max-height: 225px;
+    margin-bottom: 10px;
+    overflow:scroll;
 }
 
 @media only screen and (max-width: 481px) {
