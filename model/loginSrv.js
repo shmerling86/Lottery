@@ -7,7 +7,6 @@ app.factory('loginSrv', function ($http, $q) {
         this.email = plainUser.email;
         this.password = plainUser.password;
         this.id = plainUser.id;
-
     }
 
     function isLoggedIn() {
@@ -26,7 +25,6 @@ app.factory('loginSrv', function ($http, $q) {
 
             if (response.data.length > 0) {
                 activeUser = new User(response.data[0]);
-                // sellerId = activeUser.id;
                  
                 async.resolve(activeUser)
             } else {

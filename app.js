@@ -8,11 +8,6 @@ app.config(function ($routeProvider) {
             controller: 'navbarCtrl'
         })
 
-        .when('/options', {
-            templateUrl: 'options/options.html',
-            controller: 'newCtrl'
-        })
-
         .when('/signup', {
             templateUrl: 'signup/signup.html',
             controller: "signupCtrl"

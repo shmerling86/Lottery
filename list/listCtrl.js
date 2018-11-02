@@ -14,9 +14,8 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
     }
 
     $scope.custom = true;
-    // $scope.userId = loginSrv.getActiveUser().id;
 
-
+    $scope.userId = loginSrv.getActiveUser().id;
 
 
     $scope.toggleCustom = function () {
@@ -32,6 +31,18 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
                 for (var i = 0; i < $scope.participations.length; i++) {
                     moment.locale('he');
                     $scope.participations[i]['joinDate'] = moment($scope.participations[i]['joinDate']).fromNow()
+                }
+
+            }, function (error) {
+                $log.error(error)
+            });
+
+            listSrv.getTheWinner().then(function (lotteryWinner) {
+                $scope.winners = lotteryWinner
+
+                for (var i = 0; i < $scope.winners.length; i++) {
+                    moment.locale('he');
+                    $scope.winners[i]['winTime'] = moment($scope.winners[i]['winTime']).fromNow()
                 }
 
             }, function (error) {
@@ -60,11 +71,8 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
         return false;
     }
 
-
-
     $scope.lotteries = [];
     $scope.competitors = [];
-
 
     listSrv.getAllLotteries().then(function (lotteries) {
 
@@ -76,9 +84,9 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
 
     $scope.completePercentage = 0;
 
+
     $scope.getAndCount = function (btn, index) {
-        console.log(index);
-        
+        $scope.custom = true;
         moment.locale('he');
         $scope.clickTime = moment().format();
 
@@ -133,8 +141,11 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
 
                         listSrv.lotteryGen(index).then(function (winnerId) {
                             $scope.idOfWinner = winnerId
+                            moment.locale('he');
+                            $scope.winTime = moment().format();
 
-                            listSrv.patchTheWinner($scope.idOfWinner, index).then(function () {
+                            listSrv.patchTheWinner($scope.idOfWinner, lotteries[index]['productName'], $scope.winTime).then(function () {
+
 
                             }, function (error) {
                                 $log.error(error)
