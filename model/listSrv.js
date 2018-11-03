@@ -178,6 +178,7 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
     }
 
 
+
     return {
         Lotterie: Lotterie,
         getAllLotteries: getAllLotteries,

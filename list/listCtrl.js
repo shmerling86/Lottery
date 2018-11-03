@@ -84,8 +84,33 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
 
     $scope.completePercentage = 0;
 
+    $scope.isAlreadyIn = function (idx) {
+        
+        listSrv.getAllCompetitors(idx).then(function (competitors) {
+            $scope.alreadyIn = false;
+            for (let i = 0; i < competitors.length; i++) {
+                if ($scope.userId == competitors[i]) {
+
+                    $scope.alreadyIn = true;
+
+                } else {
+                    $scope.alreadyIn = false;
+
+                }
+            }
+
+
+        }, function (error) {
+            $log.error(error)
+        });
+
+    }
 
     $scope.getAndCount = function (btn, index) {
+
+
+
+
         $scope.custom = true;
         moment.locale('he');
         $scope.clickTime = moment().format();
