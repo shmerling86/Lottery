@@ -26,11 +26,14 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
         $scope.participation = 0;
 
         $scope.custom = $scope.custom === false ? true : false;
+       
         if ($scope.custom == false) {
             listSrv.getJoinDate($scope.userId).then(function (userDataParticipation) {
 
 
                 if (userDataParticipation == undefined) {
+                    $scope.custom = true;
+
                     return
                 } else {
                     $scope.participations = userDataParticipation

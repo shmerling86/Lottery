@@ -7,6 +7,9 @@
 
             <div class="col-sm-10 text-center mx-auto m-3">
                 <div class="float-right">
+                    <a ng-href="#!/new">
+                        <i class="fas fa-plus-circle mx-2 " title="חדש"></i>
+                    </a>
                     <i class="fas fa-filter mx-2 d-inline-block " ng-model='isHover' ng-mouseover='isHover = true'
                         ng-mouseleave='isHover=false' title="סנן">
 
@@ -31,11 +34,9 @@
                         <div ng-show="participation>0" class="numOfMsg">{{participation}}</div>
                     </i>
 
-                    <a ng-href="#!/new">
-                        <i class="fas fa-plus-circle mx-2 " title="חדש"></i>
-                    </a>
+                    
                 </div>
-
+                
             </div>
         </div>
     </div>
@@ -47,14 +48,18 @@
                 <div class="notificationBox">
                     <div class="list-group text-right">
 
-                        <li class="list-group-item shadow bg-white" ng-hide="custom" ng-repeat="winner in winners">
+                        <h6 class="text-left bg-white mb-0" ng-hide="custom"></h6>
+                        <li class="list-group-item  bg-white" ng-hide="custom" ng-repeat="winner in winners| orderBy:winner.time:true">
+
                             <span class="text-left text-muted" style="font-size: 0.6rem">{{winner.time}}</span>
                             <span class="text-right mr-3 d-block" style="font-size: 0.7rem">
                                 <strong>מזל טוב! </strong>זכית בהגרלה על
                                 {{winner.finishLottery}}.</span>
 
                         </li>
-                        <li class="list-group-item shadow bg-white" ng-hide="custom" ng-repeat="participation in participations | orderBy:participation.time:true">
+
+                        <h6 class="text-left bg-white mb-0" ng-hide="custom"><i style="color:#fff;" class="fas fa-medal"></i></h6>
+                        <li class="list-group-item  bg-white" ng-hide="custom" ng-repeat="participation in participations | orderBy:participation.time:true">
                             <span class="text-left text-muted" style="font-size: 0.6rem">{{participation.time}}</span>
                             <span class="text-right mr-3 d-block" style="font-size: 0.7rem">
                                 <strong>הצטרפת </strong>להגרלה על
@@ -62,6 +67,7 @@
                                 {{participation.lotteryN}}.</span>
 
                         </li>
+                        
                         <!-- <li class="list-group-item shadow bg-white" ng-hide="custom" ng-repeat="loser in losers | orderBy:'losers':true">
                             <span class="text-left text-muted" style="font-size: 0.6rem">{{participation.time}}</span>
                             <span class="text-right mr-3 d-block" style="font-size: 0.7rem">
@@ -70,8 +76,8 @@
 
                         </li> -->
                     </div>
-                    <div ng-hide="custom">
-                        <span ng-click="custom=true" ng-show="participations" class="text-center font-weight-bold close-btn">X</span>
+                    <div ng-hide="custom" ng-show="participations">
+                        <span ng-click="custom=true"  class="text-center font-weight-bold close-btn"><i class="fas fa-times"></i></span>
                     </div>
                 </div>
             </div>
