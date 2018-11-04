@@ -29,13 +29,18 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
         if ($scope.custom == false) {
             listSrv.getJoinDate($scope.userId).then(function (userDataParticipation) {
 
-                $scope.participations = userDataParticipation
 
-                for (var i = 0; i < $scope.participations.length; i++) {
-                    moment.locale('he');
-                    $scope.participations[i]['time'] = moment($scope.participations[i]['time']).fromNow()
+                if (userDataParticipation == undefined) {
+                    return
+                } else {
+                    $scope.participations = userDataParticipation
+
+                    for (var i = 0; i < $scope.participations.length; i++) {
+                        moment.locale('he');
+                        $scope.participations[i]['time'] = moment($scope.participations[i]['time']).fromNow()
+                    }
                 }
-
+                
             }, function (error) {
                 $log.error(error)
             });
