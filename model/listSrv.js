@@ -1,7 +1,6 @@
 app.factory('listSrv', function ($http, $q, loginSrv) {
-    var userId = loginSrv.getActiveUser().id;
 
-    function Lotterie(productName, description, marketPrice, numberOfParticipants, lotteriePrice, image, sellerUserId, competitors, buyerUserId, isPaid, complete, id) {
+    function Lotterie(productName, description, marketPrice, numberOfParticipants, lotteriePrice, image, sellerUserId, competitors, buyerUserId, isPaid, complete, startTime, id) {
         this.productName = productName,
             this.description = description,
             this.marketPrice = marketPrice,
@@ -13,6 +12,7 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
             this.buyerUserId = buyerUserId,
             this.isPaid = isPaid,
             this.complete = parseInt((((this.competitors.length) / this.numberOfParticipants) * 100).toFixed(0)),
+            this.startTime = startTime
             this.chance = (100 * (1 / this.numberOfParticipants)).toFixed(1),
             this.id = id
     }
@@ -21,14 +21,14 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
         var lotteries = [];
 
         var async = $q.defer();
-        var itemsUrl = 'https://json-server-heroku-bhjylyubnn.now.sh/lotteries';
+        var itemsUrl = 'https://json-server-heroku-feciwgcalx.now.sh/lotteries';
 
         $http.get(itemsUrl).then(function (response) {
 
             response.data.forEach(function (lotterie) {
 
                 lotteries.push(new Lotterie(lotterie.productName, lotterie.description, lotterie.marketPrice, lotterie.numberOfParticipants, lotterie.lotteriePrice,
-                    lotterie.image, lotterie.sellerUserId, lotterie.competitors, lotterie.buyerUserId, lotterie.isPaid, lotterie.complete, lotterie.id, lotterie.chance));
+                    lotterie.image, lotterie.sellerUserId, lotterie.competitors, lotterie.buyerUserId, lotterie.isPaid, lotterie.complete, lotterie.startTime, lotterie.id, lotterie.chance));
             });
 
             async.resolve(lotteries);
@@ -42,7 +42,7 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
     function getAllCompetitors(idxOfLotterie) {
 
         var async = $q.defer();
-        var itemsUrl = 'https://json-server-heroku-bhjylyubnn.now.sh/lotteries/' + idxOfLotterie
+        var itemsUrl = 'https://json-server-heroku-feciwgcalx.now.sh/lotteries/' + idxOfLotterie
         $http.get(itemsUrl).then(function (lotterie) {
 
             async.resolve(lotterie.data['competitors']);
@@ -52,11 +52,11 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
         return async.promise;
     };
 
-    function getJoinDate() {
+    function getJoinDate(userId) {
 
         var async = $q.defer();
 
-        var itemsUrl = 'https://json-server-heroku-bhjylyubnn.now.sh/users/' + userId
+        var itemsUrl = 'https://json-server-heroku-feciwgcalx.now.sh/users/' + userId
 
         $http.get(itemsUrl).then(function (user) {
 
@@ -72,7 +72,7 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
 
         var async = $q.defer();
         var userId = loginSrv.getActiveUser().id
-        var itemsUrl = 'https://json-server-heroku-bhjylyubnn.now.sh/users/' + userId
+        var itemsUrl = 'https://json-server-heroku-feciwgcalx.now.sh/users/' + userId
 
         if (participations != undefined) {
             participation = participations
@@ -80,7 +80,7 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
 
         participation.push({
             lotteryN: index,
-            joinDate: time
+            time: time
         })
 
         var patch = {
@@ -101,7 +101,7 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
         var competitors = competitors
 
         var async = $q.defer();
-        var itemsUrl = 'https://json-server-heroku-bhjylyubnn.now.sh/lotteries/' + idxOfLotterie
+        var itemsUrl = 'https://json-server-heroku-feciwgcalx.now.sh/lotteries/' + idxOfLotterie
         var userId = loginSrv.getActiveUser().id
 
         competitors.push(userId);
@@ -128,7 +128,7 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
     function lotteryGen(idxOfLottery) {
 
         var async = $q.defer();
-        var Url = 'https://json-server-heroku-bhjylyubnn.now.sh/lotteries/' + idxOfLottery
+        var Url = 'https://json-server-heroku-feciwgcalx.now.sh/lotteries/' + idxOfLottery
         $http.get(Url).then(function (response) {
             var winnerIdPosition = getRandomNum(0, (((response.data["competitors"]).length) - 1))
 
@@ -140,14 +140,14 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
     }
 
     var winner = []
-    function patchTheWinner(winnerId, finishLottery, winTime) {
+    function patchTheWinner(winnerId, finishLottery, time) {
 
 
         var async = $q.defer();
-        var itemUrl = 'https://json-server-heroku-bhjylyubnn.now.sh/users/' + winnerId
+        var itemUrl = 'https://json-server-heroku-feciwgcalx.now.sh/users/' + winnerId
 
         winner.push({
-            winTime: winTime,
+            time: time,
             finishLottery: finishLottery
         })
 
@@ -164,10 +164,10 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
         return async.promise;
     };
 
-    function getTheWinner() {
+    function getTheWinner(userId) {
 
         var async = $q.defer();
-        var Url = 'https://json-server-heroku-bhjylyubnn.now.sh/users/' + userId
+        var Url = 'https://json-server-heroku-feciwgcalx.now.sh/users/' + userId
         $http.get(Url).then(function (lottery) {
 
             async.resolve(lottery.data.winner);
@@ -177,6 +177,19 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
         return async.promise;
     }
 
+    function getTheName(id) {
+        var async = $q.defer();
+        var loginUrl = 'https://json-server-heroku-feciwgcalx.now.sh/users/' + id
+
+        $http.get(loginUrl).then(function (response) {
+
+            async.resolve(response.data.name)
+
+        }, function (err) {
+            async.reject(err)
+        });
+        return async.promise
+    };
 
 
     return {
@@ -188,7 +201,8 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
         patchTheWinner: patchTheWinner,
         dateTheJoin: dateTheJoin,
         getJoinDate: getJoinDate,
-        getTheWinner: getTheWinner
+        getTheWinner: getTheWinner,
+        getTheName: getTheName
     }
 
 });

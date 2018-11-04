@@ -45,30 +45,30 @@
             <div class="col-sm-12">
 
                 <div class="notificationBox">
-                    <div class="list-group text-right ">
+                    <div class="list-group text-right">
 
-                        <li class="list-group-item shadow bg-white" ng-hide="custom" ng-repeat="participation in participations | orderBy:'participation':true">
-                            <span class="text-left text-muted" style="font-size: 0.6rem">{{participation.joinDate}}</span>
+                        <li class="list-group-item shadow bg-white" ng-hide="custom" ng-repeat="participation in participations | orderBy:participation.time:true">
+                            <span class="text-left text-muted" style="font-size: 0.6rem">{{participation.time}}</span>
                             <span class="text-right mr-3 d-block" style="font-size: 0.7rem">
                                 <strong>הצטרפת </strong>להגרלה על
 
                                 {{participation.lotteryN}}.</span>
 
                         </li>
-                        <li class="list-group-item shadow bg-white" ng-hide="custom" ng-repeat="winner in winners | orderBy:'winners':true">
-                            <span class="text-left text-muted" style="font-size: 0.6rem">{{winner.winTime}}</span>
+                        <li class="list-group-item shadow bg-white" ng-hide="custom" ng-repeat="winner in winners">
+                            <span class="text-left text-muted" style="font-size: 0.6rem">{{winner.time}}</span>
                             <span class="text-right mr-3 d-block" style="font-size: 0.7rem">
                                 <strong>מזל טוב! </strong>זכית בהגרלה על
                                 {{winner.finishLottery}}.</span>
 
                         </li>
-                        <li class="list-group-item shadow bg-white" ng-hide="custom" ng-repeat="loser in losers | orderBy:'losers':true">
-                            <span class="text-left text-muted" style="font-size: 0.6rem">{{participation.joinDate}}</span>
+                        <!-- <li class="list-group-item shadow bg-white" ng-hide="custom" ng-repeat="loser in losers | orderBy:'losers':true">
+                            <span class="text-left text-muted" style="font-size: 0.6rem">{{participation.time}}</span>
                             <span class="text-right mr-3 d-block" style="font-size: 0.7rem">
                                 <strong>מצטערים! </strong>הפעם לא זכית. תודה על השתתפותך בהגרלה על
                                 {{participation.lotteryN}}.</span>
 
-                        </li>
+                        </li> -->
                     </div>
                     <div ng-hide="custom">
                         <span ng-click="custom=true" ng-show="participations" class="text-center font-weight-bold close-btn">X</span>
@@ -82,7 +82,8 @@
         <div class="row mt-1">
             <div class="col-sm-10 mx-auto text-center mt-2">
                 <div class="accordion" id="accordionExample">
-                    <div class="card" ng-repeat="lotterie in lotteries | filter : sortByStatus" style="background-color: #393e46; color:#eeeeee">
+                    <div class="card" ng-repeat="lotterie in lotteries  | orderBy:'lotterie':true | filter : sortByStatus"
+                        style="background-color: #393e46; color:#eeeeee">
                         <div class="card-header" id="{{lotterie.productName}}">
 
                             <h5 class="mb-0">
@@ -129,6 +130,12 @@
                                             {{lotterie.chance}}</div>
 
                                     </div>
+                                    <div class="col-sm-3 font-weight-bold text-right py-2">התחיל:
+                                        <div style="font-size:0.8rem;" class="font-weight-normal text-right">
+                                            {{lotterie.startTime}}</div>
+
+                                    </div>
+
                                     <div class="col-sm-12 mx-auto mt-5" ng-show='{{lotterie.complete}}>=100'>
                                         <div class="alert alert-danger" role="alert">
                                             <strong>ההגרלה הסתיימה! </strong>לא ניתן להצטרף להגרלה זו.

@@ -1,10 +1,9 @@
-app.controller('newCtrl', function ($scope, newSrv, $location, loginSrv) {
+app.controller('newCtrl', function ($scope, newSrv, loginSrv, listSrv, $location) {
 
     if (!loginSrv.isLoggedIn()) {
         $location.path('/');
     }
 
-    $scope.sellerUserId = loginSrv.getActiveUser().id;
     $scope.productName = '';
     $scope.description = '';
     $scope.marketPrice = null;
@@ -17,9 +16,12 @@ app.controller('newCtrl', function ($scope, newSrv, $location, loginSrv) {
     $scope.chance = function () {
         return parseInt(100 * (1 / $scope.numberOfParticipants)).toFixed(1)
     };
+    $scope.sellerUserId = loginSrv.getActiveUser().id;
 
 
 
+    moment.locale('he');
+    $scope.startTime = moment().format();
 
     $scope.isLogged = function () {
         return loginSrv.isLoggedIn()
@@ -30,11 +32,16 @@ app.controller('newCtrl', function ($scope, newSrv, $location, loginSrv) {
         $location.path('/');
     }
 
+    $scope.userId = loginSrv.getActiveUser().id;
+
+    listSrv.getTheName($scope.userId).then(function (name) {
+        $scope.name = name
+    });
 
     $scope.addLotterie = function () {
 
         newSrv.addLotterie($scope.productName, $scope.description, $scope.marketPrice, $scope.numberOfParticipants, $scope.lotteriePrice(), $scope.sellerUserId,
-            $scope.competitors, $scope.complete, $scope.chance()).then(function (newItem) {
+            $scope.competitors, $scope.complete, $scope.startTime, $scope.chance()).then(function (newItem) {
 
                 $location.path('/list');
 

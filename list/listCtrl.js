@@ -1,7 +1,7 @@
 app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log) {
 
     if (!loginSrv.isLoggedIn()) {
-        $location.path('/');
+        $location.path('/login');
     }
 
     $scope.isLogged = function () {
@@ -18,32 +18,43 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
     $scope.userId = loginSrv.getActiveUser().id;
 
 
+    listSrv.getTheName($scope.userId).then(function (name) {
+        $scope.name = name
+    });
+
     $scope.toggleCustom = function () {
         $scope.participation = 0;
 
         $scope.custom = $scope.custom === false ? true : false;
         if ($scope.custom == false) {
-            listSrv.getJoinDate().then(function (userDataParticipation) {
+            listSrv.getJoinDate($scope.userId).then(function (userDataParticipation) {
 
                 $scope.participations = userDataParticipation
 
-
                 for (var i = 0; i < $scope.participations.length; i++) {
                     moment.locale('he');
-                    $scope.participations[i]['joinDate'] = moment($scope.participations[i]['joinDate']).fromNow()
+                    $scope.participations[i]['time'] = moment($scope.participations[i]['time']).fromNow()
                 }
 
             }, function (error) {
                 $log.error(error)
             });
 
-            listSrv.getTheWinner().then(function (lotteryWinner) {
-                $scope.winners = lotteryWinner
+            listSrv.getTheWinner($scope.userId).then(function (userDataWinner) {
 
-                for (var i = 0; i < $scope.winners.length; i++) {
-                    moment.locale('he');
-                    $scope.winners[i]['winTime'] = moment($scope.winners[i]['winTime']).fromNow()
+                if (userDataWinner == undefined) {
+                    return
+                } else {
+
+                    $scope.winners = userDataWinner
+
+                    for (var i = 0; i < $scope.winners.length; i++) {
+                        moment.locale('he');
+                        $scope.winners[i]['time'] = moment($scope.winners[i]['time']).fromNow()
+                        // $scope.participations.push(moment($scope.winners[i]).fromNow())
+                    }
                 }
+
 
             }, function (error) {
                 $log.error(error)
@@ -71,12 +82,17 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
         return false;
     }
 
-    $scope.lotteries = [];
+    // $scope.lotteries = [];
     $scope.competitors = [];
 
     listSrv.getAllLotteries().then(function (lotteries) {
 
         $scope.lotteries = lotteries;
+
+        for (var i = 0; i < lotteries.length; i++) {
+            moment.locale('he');
+            lotteries[i]['startTime'] = moment(lotteries[i]['startTime']).fromNow()
+        }
 
     }, function (error) {
         $log.error(error)
@@ -85,7 +101,7 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
     $scope.completePercentage = 0;
 
     $scope.isAlreadyIn = function (idx) {
-        
+
         listSrv.getAllCompetitors(idx).then(function (competitors) {
             $scope.alreadyIn = false;
             for (let i = 0; i < competitors.length; i++) {
@@ -108,15 +124,12 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
 
     $scope.getAndCount = function (btn, index) {
 
-
-
-
         $scope.custom = true;
         moment.locale('he');
         $scope.clickTime = moment().format();
 
 
-        listSrv.getJoinDate().then(function (userDataParticipation) {
+        listSrv.getJoinDate($scope.userId).then(function (userDataParticipation) {
             $scope.participations = userDataParticipation
 
             listSrv.dateTheJoin($scope.clickTime, $scope.lotteries[index]['productName'], $scope.participations).then(function (participation) {
@@ -153,6 +166,12 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
                 $scope.completePercentage = 100
             }
 
+            // for (var i = 0; i < lotteries.length; i++) {
+            //     moment.locale('he');
+            //     lotteries[i]['startTime'] = moment(lotteries[i]['startTime']).fromNow()
+            // }
+
+
 
             listSrv.getAllCompetitors(index).then(function (competitors) {
 
@@ -167,9 +186,9 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
                         listSrv.lotteryGen(index).then(function (winnerId) {
                             $scope.idOfWinner = winnerId
                             moment.locale('he');
-                            $scope.winTime = moment().format();
+                            $scope.time = moment().format();
 
-                            listSrv.patchTheWinner($scope.idOfWinner, lotteries[index]['productName'], $scope.winTime).then(function () {
+                            listSrv.patchTheWinner($scope.idOfWinner, lotteries[index]['productName'], $scope.time).then(function () {
 
 
                             }, function (error) {

@@ -1,4 +1,8 @@
-app.controller('navbarCtrl', function ($scope, loginSrv, $location) {
+app.controller('navbarCtrl', function ($scope, loginSrv, listSrv, $location) {
+
+    if (loginSrv.isLoggedIn()) {
+        $location.path('/list');
+    }
 
     $scope.logout = function () {
         loginSrv.logout();
@@ -9,4 +13,5 @@ app.controller('navbarCtrl', function ($scope, loginSrv, $location) {
         return loginSrv.isLoggedIn()
     }
 
+   
 });

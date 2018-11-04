@@ -1,11 +1,11 @@
-app.factory('newSrv', function ($q, $http, loginSrv) {
+app.factory('newSrv', function ($q, $http) {
 
 
-    function addLotterie(productName, description, marketPrice, numberOfParticipants, lotteriePrice ,sellerUserId, competitors, complete, chance) {
+    function addLotterie(productName, description, marketPrice, numberOfParticipants, lotteriePrice ,sellerUserId, competitors, complete, startTime, chance) {
 
         var async = $q.defer();
 
-        var itemsUrl = 'https://json-server-heroku-bhjylyubnn.now.sh/lotteries';
+        var itemsUrl = 'https://json-server-heroku-feciwgcalx.now.sh/lotteries';
 
         var patch = {
             productName: productName,
@@ -16,6 +16,7 @@ app.factory('newSrv', function ($q, $http, loginSrv) {
             sellerUserId: sellerUserId,
             competitors: competitors,
             complete: complete,
+            startTime: startTime,
             chance: chance
         }
 
@@ -29,6 +30,7 @@ app.factory('newSrv', function ($q, $http, loginSrv) {
         return async.promise;
     }
 
+    
   
     return {
 
