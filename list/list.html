@@ -28,14 +28,14 @@
                                 value="הסתיים">
                         </div>
                     </i>
-                    <i class="fas fa-search mx-2" title="חדש"  ng-model='isHoverMe' ng-click='isHoverMe=false' ng-mouseover='isHoverMe = true'></i>
+                    <i class="fas fa-search mx-2" title="חיפוש" ng-model='isHoverMe' ng-click="isHoverMe=!isHoverMe;searchText='';"></i>
                 </div>
                 <div class="float-left mb-2">
                     <i class="fas fa-bell ml-2" title="הודעות" ng-click="toggleCustom()" style="position: relative;">
                         <div ng-show="participation>0" class="numOfMsg">{{participation}}</div>
                     </i>
                 </div>
-                <input class="form-control" type="text" ng-show='isHoverMe' ng-model="searchText" placeholder="חיפוש">
+                <input class="form-control"  type="text" ng-show='isHoverMe' ng-model="searchText" placeholder="חיפוש" autofocus >
 
 
             </div>
@@ -98,7 +98,7 @@
                                 <span class="float-left text-warning" ng-show="{{lotterie.chance}} > 0.5 && {{lotterie.chance}} < 10">
                                     <i class="fas fa-dice-four my-2" style="font-size:1.8rem;"></i>
                                 </span>
-                                <span class="float-left text-success" ng-show="{{lotterie.chance}} >= 10 && {{lotterie.chance}} <= 50">
+                                <span class="float-left text-success" ng-show="{{lotterie.chance}} >= 10">
                                     <i class="fas fa-dice-six my-2" style="font-size:1.8rem;"></i></span>
 
 
