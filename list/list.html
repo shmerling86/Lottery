@@ -4,8 +4,8 @@
 
     <div class="container ">
         <div class="row">
-
             <div class="col-sm-10 text-center mx-auto m-3">
+
                 <div class="float-right">
                     <a ng-href="#!/new">
                         <i class="fas fa-plus-circle mx-2 " title="חדש"></i>
@@ -28,14 +28,15 @@
                                 value="הסתיים">
                         </div>
                     </i>
+                    <i class="fas fa-search mx-2" title="חדש"  ng-model='isHoverMe' ng-click='isHoverMe=false' ng-mouseover='isHoverMe = true'></i>
                 </div>
-                <div class="float-left">
+                <div class="float-left mb-2">
                     <i class="fas fa-bell ml-2" title="הודעות" ng-click="toggleCustom()" style="position: relative;">
                         <div ng-show="participation>0" class="numOfMsg">{{participation}}</div>
                     </i>
-
-
                 </div>
+                <input class="form-control" type="text" ng-show='isHoverMe' ng-model="searchText" placeholder="חיפוש">
+
 
             </div>
         </div>
@@ -57,7 +58,7 @@
 
                         </li>
 
-                            <li class="list-group-item shadow bg-white" ng-hide="custom" ng-repeat="loser in losers | orderBy:loser.time:true">
+                        <li class="list-group-item shadow bg-white" ng-hide="custom" ng-repeat="loser in losers | orderBy:loser.time:true">
                             <span class="text-left text-muted" style="font-size: 0.6rem">{{loser.time}}</span>
                             <span class="text-right mr-3 d-block" style="font-size: 0.7rem">
                                 <strong>מצטערים! </strong>הפעם לא זכית. תודה על השתתפותך בהגרלה על
@@ -87,7 +88,7 @@
         <div class="row mt-1">
             <div class="col-sm-10 mx-auto text-center mt-2">
                 <div class="accordion" id="accordionExample">
-                    <div class="card" ng-repeat="lotterie in lotteries  | orderBy:'lotterie':true | filter : sortByStatus"
+                    <div class="card" ng-repeat="lotterie in lotteries  | orderBy:'lotterie':true | filter : sortByStatus | filter : searchText"
                         style="background-color: #393e46; color:#eeeeee">
                         <div class="card-header" id="{{lotterie.productName}}">
 
