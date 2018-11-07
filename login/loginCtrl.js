@@ -1,4 +1,4 @@
-app.controller('loginCtrl', function ($scope, $location, loginSrv) {
+app.controller('loginCtrl', function ($scope, $location, $log, loginSrv) {
 
     if (loginSrv.isLoggedIn()) {
         $location.path('/list');
@@ -15,14 +15,16 @@ app.controller('loginCtrl', function ($scope, $location, loginSrv) {
     $scope.login = function () {
         $scope.invalidLogin = false;
         
-
         loginSrv.login($scope.email, $scope.password).then(function (user) {
 
             $location.path('/list');
 
-        }, function () {
+        }, function (error) {
             $scope.invalidLogin = true;
-        })
+
+            $log.error(error)
+        });
+
     }
 
 

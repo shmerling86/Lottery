@@ -8,13 +8,13 @@ app.controller('signupCtrl', function ($scope, $location, signupSrv, loginSrv) {
         return loginSrv.isLoggedIn()
     }
 
-    $scope.fullName = '';
+    $scope.name = '';
     $scope.email = '';
     $scope.password = '';
 
     $scope.addUser = function () {
 
-        signupSrv.addUser($scope.fullName, $scope.email, $scope.password).then(function (newUser) {
+        signupSrv.addUser($scope.name, $scope.email, $scope.password).then(function (newUser) {
 
             // activeUser = newUser.data
             $location.path('/login');

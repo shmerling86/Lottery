@@ -3,11 +3,13 @@ body{
     color:#393e46;
 }
 
+input.ng-invalid.ng-dirty{
+    border: 1px solid red;
+}
+
 a{
     color:#393e46;
 }
-
-
 
 body,
 #inputName,
@@ -20,7 +22,7 @@ body,
 }
 
 form{
-    direction: ltr;    
+    direction: rtl;    
   
 }
 
@@ -121,8 +123,8 @@ overflow-x: hidden;
 
     .numOfMsg{
         position: absolute;
-        right: 14%;
-        top: 11%;
+        right: -61%;
+        top: -33%;
     }
 
     .notificationBox{
