@@ -13,7 +13,7 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
             this.isPaid = isPaid,
             this.complete = parseInt((((this.competitors.length) / this.numberOfParticipants) * 100).toFixed(0)),
             this.startTime = startTime
-            this.chance = (100 * (1 / this.numberOfParticipants)).toFixed(1),
+        this.chance = (100 * (1 / this.numberOfParticipants)).toFixed(1),
             this.id = id
     }
 
@@ -164,6 +164,36 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
         return async.promise;
     };
 
+    var loser = [];
+    function patchTheLoser(finishLottery, time, losers) {
+
+        for (let i = 0; i < losers.length; i++) {
+            var participation = losers[i];
+
+            var async = $q.defer();
+            var itemUrl = 'https://json-server-heroku-feciwgcalx.now.sh/users/' + participation
+
+            loser.push({
+                time: time,
+                finishLottery: finishLottery
+            })
+
+            var patch = {
+                "loser": loser
+            }
+
+            $http.patch(itemUrl, patch).then(function (res) {
+
+                async.resolve(res);
+            }, function (err) {
+                async.reject(err);
+            });
+            return async.promise;
+        };
+    }
+
+
+
     function getTheWinner(userId) {
 
         var async = $q.defer();
@@ -171,6 +201,19 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
         $http.get(Url).then(function (lottery) {
 
             async.resolve(lottery.data.winner);
+        }, function (err) {
+            async.reject(err);
+        });
+        return async.promise;
+    }
+
+    function getTheLoser(userId) {
+
+        var async = $q.defer();
+        var Url = 'https://json-server-heroku-feciwgcalx.now.sh/users/' + userId
+        $http.get(Url).then(function (lottery) {
+
+            async.resolve(lottery.data.loser);
         }, function (err) {
             async.reject(err);
         });
@@ -202,7 +245,9 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
         dateTheJoin: dateTheJoin,
         getJoinDate: getJoinDate,
         getTheWinner: getTheWinner,
-        getTheName: getTheName
+        getTheName: getTheName,
+        patchTheLoser: patchTheLoser,
+        getTheLoser: getTheLoser
     }
 
 });

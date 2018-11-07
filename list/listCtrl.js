@@ -26,7 +26,7 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
         $scope.participation = 0;
 
         $scope.custom = $scope.custom === false ? true : false;
-       
+
         if ($scope.custom == false) {
             listSrv.getJoinDate($scope.userId).then(function (userDataParticipation) {
 
@@ -43,7 +43,7 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
                         $scope.participations[i]['time'] = moment($scope.participations[i]['time']).fromNow()
                     }
                 }
-                
+
             }, function (error) {
                 $log.error(error)
             });
@@ -59,7 +59,25 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
                     for (var i = 0; i < $scope.winners.length; i++) {
                         moment.locale('he');
                         $scope.winners[i]['time'] = moment($scope.winners[i]['time']).fromNow()
-                        // $scope.participations.push(moment($scope.winners[i]).fromNow())
+                    }
+                }
+
+
+            }, function (error) {
+                $log.error(error)
+            });
+
+            listSrv.getTheLoser($scope.userId).then(function (userDataLoser) {
+
+                if (userDataLoser == undefined) {
+                    return
+                } else {
+
+                    $scope.losers = userDataLoser
+
+                    for (var i = 0; i < $scope.losers.length; i++) {
+                        moment.locale('he');
+                        $scope.losers[i]['time'] = moment($scope.losers[i]['time']).fromNow()
                     }
                 }
 
@@ -110,20 +128,13 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
 
     $scope.isAlreadyIn = function (idx) {
 
+        $scope.alreadyIn = false;
         listSrv.getAllCompetitors(idx).then(function (competitors) {
-            $scope.alreadyIn = false;
             for (let i = 0; i < competitors.length; i++) {
                 if ($scope.userId == competitors[i]) {
-
                     $scope.alreadyIn = true;
-
-                } else {
-                    $scope.alreadyIn = false;
-
                 }
             }
-
-
         }, function (error) {
             $log.error(error)
         });
@@ -197,7 +208,20 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
                             $scope.time = moment().format();
 
                             listSrv.patchTheWinner($scope.idOfWinner, lotteries[index]['productName'], $scope.time).then(function () {
+                                $scope.lossers = [];
+                                for (let i = 0; i < $scope.competitorsId.length; i++) {
+                                    if ($scope.competitorsId[i] != $scope.idOfWinner) {
+                                        $scope.lossers.push($scope.competitorsId[i])
+                                    }
+                                }
 
+                                listSrv.patchTheLoser(lotteries[index]['productName'], $scope.time, $scope.lossers).then(function () {
+
+                                    
+
+                                }, function (error) {
+                                    $log.error(error)
+                                });
 
                             }, function (error) {
                                 $log.error(error)
