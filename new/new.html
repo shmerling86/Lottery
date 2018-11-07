@@ -6,43 +6,50 @@
         <div class="row">
             <div class="col-sm-6 mx-auto ">
                 
-                <form class="form-signin r-t">
+                <form name="frm" class="form-signin r-t">
 
                     <div class="form-row font-weight-bold">
                         <label for="productName">שם המוצר</label>
-                        <input type="text" id="name" ng-model="productName" maxlength="30" placeholder="" class="form-control text-muted mb-2 font-italic" autofocus>
+                        <input type="text" id="name" name="product" ng-model="productName" ng-minlength='6' ng-maxlength='30'  class="form-control text-muted mb-2 font-italic" autofocus required>
+                        <span class="text-danger float-right mb-1" ng-show="frm.product.$dirty && frm.product.$error.required" style="font-size:0.7rem;">שדה חובה</span>
+                        <span class="text-danger float-right mb-1" ng-show="frm.product.$dirty && frm.product.$error.minlength" style="font-size:0.7rem;">קצר מידי</span>
+                        <span class="text-danger float-right mb-1" ng-show="frm.product.$dirty && frm.product.$error.maxlength" style="font-size:0.7rem;">ארוך מידי</span>
                     </div>
 
                     <div class="form-row font-weight-bold">
                         <label for="description">תיאור המוצר</label>
-                        <textarea id="description" ng-model="description" maxlength="60" cols="30" rows="2" placeholder="" class="form-control text-muted mb-2 font-italic"></textarea>
+                        <textarea id="description" ng-model="description" maxlength="60" cols="30" rows="2" class="form-control text-muted mb-2 font-italic"></textarea>
                     </div>
 
                     <div class="form-row font-weight-bold">
 
                         <div class="col-sm-6 text-right">
                             <label for="marketPrice">מחיר שוק (ש"ח)</label>
-                            <input  id="marketPrice" ng-model="marketPrice"  placeholder='' class="form-control text-muted mb-2 font-italic"
+                            <input  id="marketPrice" ng-model="marketPrice" name="price" ng-minlength='2' ng-maxlength='6' class="form-control text-muted mb-2 font-italic"
                             
                             oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                             type = "number"
-                            maxlength = "6">
+                            maxlength = "6" required>
+                            <span class="text-danger float-right mb-1" ng-show="frm.price.$dirty && frm.price.$error.required" style="font-size:0.7rem;">שדה חובה</span>
+                            <span class="text-danger float-right mb-1" ng-show="frm.price.$dirty && frm.price.$error.minlength" style="font-size:0.7rem;">נמוך מידי</span>
 
                         </div>
                        
                         <div class="col-sm-6 text-right">
                                 <label for="numberOfParticipants">מספר משתתפים</label>
-                                <input  id="numberOfParticipants" ng-model="numberOfParticipants" placeholder='' class="form-control text-muted mb-2 font-italic"
+                                <input  id="numberOfParticipants" name="participations" ng-minlength='1' ng-maxlength='5' ng-model="numberOfParticipants"   class="form-control text-muted mb-2 font-italic"
 
                                 oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                 type = "number"
-                                maxlength = "3">
+                                maxlength = "3" required>
+                                <span class="text-danger float-right mb-1" ng-show="frm.participations.$dirty && frm.participations.$error.required" style="font-size:0.7rem;">שדה חובה</span>
+                                <span class="text-danger float-right mb-1" ng-show="frm.participations.$dirty && frm.participations.$error.minlength" style="font-size:0.7rem;">נמוך מידי</span>
                             </div>
 
                     </div>
 
 
-                    <button class="btn btn-lg btn-info btn-block my-2" data-ng-disabled="myForm.$invalid" ng-click="myForm.$invalid=true;addLotterie()"
+                    <button class="btn btn-lg btn-info btn-block my-2" ng-disabled="frm.$invalid" ng-click="addLotterie()"
                         type="button">הוסף</button>
 
 

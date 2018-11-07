@@ -10,30 +10,30 @@
                     <label for="" class="sr-only"></label>
                     <input type="text" name='name' ng-model='name' id="inputName" class="form-control my-1"
                         placeholder="שם מלא" required autofocus>
-                    <span  class="text-danger float-right mb-1"  ng-show="frm.name.$dirty && frm.name.$error.required" style="font-size:0.7rem;">שדה חובה!</span>
+                    <span  class="text-danger float-right mb-1"  ng-show="frm.name.$dirty && frm.name.$error.required" style="font-size:0.7rem;">שדה חובה</span>
 
                     <label for="" class="sr-only"></label>
                     <input type="email" name='email' ng-model='email' id="inputEmail" class="form-control my-1" placeholder="אי-מייל" required>
-                    <span class="text-danger float-right mb-1" ng-show="frm.email.$dirty && frm.email.$error.required" style="font-size:0.7rem;">שדה חובה!</span>
-                    <span class="text-danger float-right mb-1" ng-show="frm.email.$dirty && frm.email.$error.email" style="font-size:0.7rem;">אנא הזן כתובת דוא"ל!
+                    <span class="text-danger float-right mb-1" ng-show="frm.email.$dirty && frm.email.$error.required" style="font-size:0.7rem;">שדה חובה</span>
+                    <span class="text-danger float-right mb-1" ng-show="frm.email.$dirty && frm.email.$error.email" style="font-size:0.7rem;">אנא הזן כתובת דוא"ל
                         חוקית</span>
 
                     <label for="" class="sr-only"></label>
                     <input type="password" name='password' ng-model='password' ng-minlength='6' ng-maxlength='12'
                         id="inputPassword" class="form-control my-1" placeholder="סיסמה" required>
-                    <span class="text-danger float-right mb-1" ng-show="frm.password.$dirty && frm.password.$error.required" style="font-size:0.7rem;">שדה חובה!</span>
-                    <span class="text-danger float-right mb-1" ng-show="frm.password.$dirty && frm.password.$error.minlength" style="font-size:0.7rem;">קצר מידי!</span>
-                    <span class="text-danger float-right mb-1" ng-show="frm.password.$dirty && frm.password.$error.maxlength" style="font-size:0.7rem;">ארוך מידי!</span>
+                    <span class="text-danger float-right mb-1" ng-show="frm.password.$dirty && frm.password.$error.required" style="font-size:0.7rem;">שדה חובה</span>
+                    <span class="text-danger float-right mb-1" ng-show="frm.password.$dirty && frm.password.$error.minlength" style="font-size:0.7rem;">קצר מידי</span>
+                    <span class="text-danger float-right mb-1" ng-show="frm.password.$dirty && frm.password.$error.maxlength" style="font-size:0.7rem;">ארוך מידי</span>
 
                     <label for="" class="sr-only"></label>
                     <input type="password" name='repassword' ng-model='repassword' ng-minlength='6' ng-maxlength='12'
                         class="form-control my-1" id="inputPasswordC" placeholder="אישור סיסמה" required>
-                    <span class="text-danger float-right mb-1" ng-show="frm.repassword.$dirty && frm.repassword.$error.required" style="font-size:0.7rem;">שדה חובה!</span>
-                    <span class="text-danger float-right mb-1" ng-show="frm.repassword.$dirty && frm.repassword.$error.minlength" style="font-size:0.7rem;">קצר מידי!</span>
-                    <span class="text-danger float-right mb-1" ng-show="frm.repassword.$dirty && frm.repassword.$error.maxlength" style="font-size:0.7rem;">ארוך מידי!</span>
+                    <span class="text-danger float-right mb-1" ng-show="frm.repassword.$dirty && frm.repassword.$error.required" style="font-size:0.7rem;">שדה חובה</span>
+                    <span class="text-danger float-right mb-1" ng-show="frm.repassword.$dirty && frm.repassword.$error.minlength" style="font-size:0.7rem;">קצר מידי</span>
+                    <span class="text-danger float-right mb-1" ng-show="frm.repassword.$dirty && frm.repassword.$error.maxlength" style="font-size:0.7rem;">ארוך מידי</span>
 
 
-                    <button class="btn btn-lg btn-info my-3 btn-block" ng-disabled="frm.$invalid"  ng-click=";addUser()" >אשר</button>
+                    <button class="btn btn-lg btn-info my-3 btn-block" ng-disabled="frm.$invalid"  ng-click="addUser()" >אשר</button>
                 </form>
 
 

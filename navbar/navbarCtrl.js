@@ -6,7 +6,7 @@ app.controller('navbarCtrl', function ($scope, loginSrv, listSrv, $location) {
 
     $scope.logout = function () {
         loginSrv.logout();
-        $location.path('/');
+        $location.path('/login');
     }
 
     $scope.isLogged = function () {

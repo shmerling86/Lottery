@@ -7,27 +7,27 @@
                 <form name="frm" class="form-signin mt-5">
                     
                     <h1 class="h3 mb-3 font-weight-normal text-center">כניסה</h1>
-                    <div class="alert alert-danger text-right" ng-show='invalidLogin'>פרטי כניסה שגויים!</div>
+                    <div class="alert alert-danger text-right" ng-show='invalidLogin'>פרטי כניסה שגויים</div>
 
                 
                     <label for="" class="sr-only "></label>
                     <input type="email" id="Email" name='email' class="form-control my-1" ng-model="email" placeholder='כתובת דוא"ל'
                         required>
                     <span class="text-danger float-right mb-1" ng-show="frm.email.$dirty && frm.email.$error.required"
-                        style="font-size:0.7rem;">שדה חובה!</span>
+                        style="font-size:0.7rem;">שדה חובה</span>
                     <span class="text-danger float-right mb-1" ng-show="frm.email.$dirty && frm.email.$error.email"
-                        style="font-size:0.7rem;">אנא הזן כתובת דוא"ל!</span>
+                        style="font-size:0.7rem;">אנא הזן כתובת דוא"ל</span>
 
 
                     <label for="" class="sr-only"></label>
                     <input type="password" id="Password" name='password' class="form-control my-1" ng-model="password"
                         ng-minlength='6' ng-maxlength='12' placeholder="סיסמה" required>
                     <span class="text-danger float-right mb-1" ng-show="frm.password.$dirty && frm.password.$error.required"
-                        style="font-size:0.7rem;">שדה חובה!</span>
+                        style="font-size:0.7rem;">שדה חובה</span>
                     <span class="text-danger float-right mb-1" ng-show="frm.password.$dirty && frm.password.$error.minlength"
-                        style="font-size:0.7rem;">קצר מידי!</span>
+                        style="font-size:0.7rem;">קצר מידי</span>
                     <span class="text-danger float-right mb-1" ng-show="frm.password.$dirty && frm.password.$error.maxlength"
-                        style="font-size:0.7rem;">ארוך מידי!</span>
+                        style="font-size:0.7rem;">ארוך מידי</span>
 
                     <button class="btn btn-lg btn-info my-3 btn-block" ng-disabled="frm.$invalid" type="submit"
                         ng-click="login()">כנס</button>
