@@ -1,6 +1,6 @@
 body{
-    background-color:#eeeeee;
-    color:#393e46;
+    background-color:#9EA3B0;
+    color:#546A7B;
 }
 
 input.ng-invalid.ng-dirty{
@@ -8,7 +8,7 @@ input.ng-invalid.ng-dirty{
 }
 
 a{
-    color:#393e46;
+    color:#546A7B;
 }
 
 body,
@@ -33,7 +33,7 @@ a>.btn{
 
 
 a:hover{
-    color:#393e46;
+    color:#546A7B;
     text-decoration: none;
 
 
@@ -50,6 +50,9 @@ body, html {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+.card-body{
+    background: #9EA3B0;
 }
 
 .spl{
@@ -71,7 +74,7 @@ body, html {
 
 .float-right>a:hover,
 .float-right>i:hover{
-    color: #393e46;
+    color: #546A7B;
 }
 
 .numOfMsg{
@@ -98,10 +101,10 @@ body, html {
     font-size: 0.75rem;
     cursor: pointer;
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     right: 50%;
-    top: 103%;
+    top: 100%;
     background-color: #bbb
 }
 
@@ -109,7 +112,23 @@ body, html {
     max-height: 355px;
     margin-bottom: 10px;
     overflow:scroll;
-overflow-x: hidden;
+    overflow-x: hidden;
+}
+
+.lotteryName{
+    cursor: pointer;
+    color: #9EA3B0;
+    background-color: transparent;
+    font-weight: 600;
+    text-align: center;
+    font-size: 1rem;
+    line-height: 2.4;
+}
+
+.btn-color{
+    background-color: #E4C3AD;
+    border-color: none; 
+    color: #546A7B;
 }
 
 @media only screen and (max-width: 481px) {

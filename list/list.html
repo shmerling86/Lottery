@@ -49,7 +49,7 @@
                 <div class="notificationBox">
                     <div class="list-group text-right">
 
-                        <li class="list-group-item  bg-white" ng-hide="custom" ng-repeat="winner in winners| orderBy:winner.time:true">
+                        <li class="list-group-item" ng-hide="custom" ng-repeat="winner in winners| orderBy:winner.time:true">
 
                             <span class="text-left text-muted" style="font-size: 0.6rem">{{winner.time}}</span>
                             <span class="text-right mr-3 d-block" style="font-size: 0.7rem">
@@ -58,7 +58,7 @@
 
                         </li>
 
-                        <li class="list-group-item shadow bg-white" ng-hide="custom" ng-repeat="loser in losers | orderBy:loser.time:true">
+                        <li class="list-group-item shadow" ng-hide="custom" ng-repeat="loser in losers | orderBy:loser.time:true">
                             <span class="text-left text-muted" style="font-size: 0.6rem">{{loser.time}}</span>
                             <span class="text-right mr-3 d-block" style="font-size: 0.7rem">
                                 <strong>מצטערים! </strong>הפעם לא זכית. תודה על השתתפותך בהגרלה על
@@ -66,7 +66,7 @@
 
                         </li>
 
-                        <li class="list-group-item  bg-white" ng-hide="custom" ng-repeat="participation in participations | orderBy:participation.time:true">
+                        <li class="list-group-item" ng-hide="custom" ng-repeat="participation in participations | orderBy:participation.time:true">
                             <span class="text-left text-muted" style="font-size: 0.6rem">{{participation.time}}</span>
                             <span class="text-right mr-3 d-block" style="font-size: 0.7rem">
                                 <strong>הצטרפת </strong>להגרלה על
@@ -76,8 +76,8 @@
                         </li>
 
                     </div>
-                    <div ng-hide="custom" ng-show="participations">
-                        <span ng-click="custom=true" class="text-center font-weight-bold close-btn"><i class="fas fa-times"></i></span>
+                    <div ng-hide="custom || !participations">
+                        <span ng-click="custom=true" class="text-center font-weight-bold close-btn"><i style="font-size:1.25rem;line-height: 1.5;" class="fas fa-times"></i></span>
                     </div>
                 </div>
             </div>
@@ -89,25 +89,28 @@
             <div class="col-sm-10 mx-auto text-center mt-2">
                 <div class="accordion" id="accordionExample">
                     <div class="card" ng-repeat="lotterie in lotteries  | orderBy:'lotterie':true | filter : sortByStatus | filter : searchText"
-                        style="background-color: #393e46; color:#eeeeee">
-                        <div class="card-header" id="{{lotterie.productName}}">
+                        style="background-color: #546A7B;">
+                        <div class="card-header" id="{{lotterie.productName}}" ng-click="isAlreadyIn(lotterie.id)"
+                        data-toggle="collapse" data-target="#{{lotterie.id}}" aria-expanded="false"
+                        aria-controls="{{lotterie.id}}" >
 
                             <h5 class="mb-0">
-                                <span class="float-left text-danger" ng-show="{{lotterie.chance}} >= 0.1 && {{lotterie.chance}} <= 0.5">
+                                <!-- <span class="float-left text-danger" ng-show="{{lotterie.chance}} >= 0.1 && {{lotterie.chance}} <= 0.5">
                                     <i class="fas fa-dice-two my-2" style="font-size:1.8rem;"></i></span>
                                 <span class="float-left text-warning" ng-show="{{lotterie.chance}} > 0.5 && {{lotterie.chance}} < 10">
                                     <i class="fas fa-dice-four my-2" style="font-size:1.8rem;"></i>
                                 </span>
                                 <span class="float-left text-success" ng-show="{{lotterie.chance}} >= 10">
-                                    <i class="fas fa-dice-six my-2" style="font-size:1.8rem;"></i></span>
+                                    <i class="fas fa-dice-six my-2" style="font-size:1.8rem;"></i></span> -->
 
 
                                 <!-- <i ng-click='deleteFromLotteries($index)' ng-show={{lotterie.sellerUserId}}=={{userId}} class="far fa-trash-alt float-right my-2" style="color:rgb(255, 0, 0)"></i> -->
 
-                                <button class="btn btn-link" type="button" ng-click="isAlreadyIn(lotterie.id)"
+                                <!-- <button class="btn btn-link" type="button" ng-click="isAlreadyIn(lotterie.id)"
                                     data-toggle="collapse" data-target="#{{lotterie.id}}" aria-expanded="false"
                                     aria-controls="{{lotterie.id}}" style=" color:#eeeeee">{{lotterie.productName}}
-                                </button>
+                                </button> -->
+                                <div class="lotteryName" >{{lotterie.productName}}</div>
                             </h5>
                         </div>
 
@@ -133,7 +136,9 @@
                                     </div>
                                     <div class="col-sm-3 font-weight-bold text-right py-2">אחוזי זכייה:
                                         <div style="font-size:0.8rem;" class="font-weight-normal text-right">%
-                                            {{lotterie.chance}}</div>
+                                            {{lotterie.chance}}
+                                        
+                                        </div>
 
                                     </div>
                                     <div class="col-sm-3 font-weight-bold text-right py-2">התחיל:
@@ -159,7 +164,7 @@
 
                                 <div class="col-sm-12 mt-5 text-left" ng-hide='{{lotterie.complete}}>=100 || alreadyIn'>
 
-                                    <button type="button" class="btn btn-info font-weight-bold " data-toggle="modal"
+                                    <button type="button" class="btn btn-color" data-toggle="modal"
                                         data-target=".{{lotterie.id}}" ng-click="getAndCount($event, lotterie.id);">הצטרף</button>
 
                                     <div class="text-muted" style="font-size: 0.8rem;">{{lotterie.complete}}%
@@ -187,8 +192,8 @@
                                         <p></p>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary mx-1  btn-sm" data-dismiss="modal">ביטול</button>
-                                        <button type="button" class="btn btn-info  btn-sm" data-dismiss="modal">אישור
+                                        <button type="button" class="btn btn-outline-secondary mx-1  btn-sm" data-dismiss="modal">ביטול</button>
+                                        <button type="button" class="btn btn-color  btn-sm" data-dismiss="modal">אישור
                                             ותשלום</button>
                                     </div>
                                 </div>
@@ -203,7 +208,7 @@
 
     </div>
 
-    <div class="card-footer bg-dark fixed-bottom text-muted text-center py-1" style="font-size: 0.8rem">
+    <div class="card-footer fixed-bottom text-muted text-center py-1" style="font-size: 0.8rem;; color:#000;background-color: #E4C3AD">
         CODED BY LIOR-SHMERLING
     </div>
 
