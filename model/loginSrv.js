@@ -25,7 +25,7 @@ app.factory('loginSrv', function ($http, $q) {
 
             if (response.data.length > 0) {
                 activeUser = new User(response.data[0]);
-                 
+
                 async.resolve(activeUser)
             } else {
                 async.reject('invalid Credentials');

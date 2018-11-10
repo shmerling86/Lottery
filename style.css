@@ -59,14 +59,7 @@ body, html {
     letter-spacing: 1px;
 }
 
-.notificationBox{
-    position: absolute;
-    width: 53%;
-    z-index:1;
-    right: 23%;
-    padding: 0 3px;
-    margin-bottom:5rem;
-}
+
 .active{
     background-color: #6c757d;
     color: #eeeeee;
@@ -98,14 +91,13 @@ body, html {
 
 .close-btn{
     position: absolute;
-    font-size: 0.75rem;
     cursor: pointer;
     border-radius: 50%;
     width: 30px;
-    height: 30px;
-    right: 50%;
+    height: 30px; 
     top: 100%;
-    background-color: #bbb
+    right: 44%;
+    background-color: #bbb;
 }
 
 .list-group{
@@ -129,6 +121,15 @@ body, html {
     background-color: #E4C3AD;
     border-color: none; 
     color: #546A7B;
+}
+
+.notificationBox{
+    position: absolute;
+    width: 53%;
+    z-index:1;
+    right: 23%;
+    padding: 0 3px;
+    margin-bottom:5rem;
 }
 
 @media only screen and (max-width: 481px) {

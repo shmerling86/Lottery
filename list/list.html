@@ -4,7 +4,7 @@
 
     <div class="container ">
         <div class="row">
-            <div class="col-sm-10 text-center mx-auto m-3">
+            <div class="col-sm-10 text-center mx-auto mt-3">
 
                 <div class="float-right">
                     <a ng-href="#!/new">
@@ -35,7 +35,8 @@
                         <div ng-show="participation>0" class="numOfMsg">{{participation}}</div>
                     </i>
                 </div>
-                <input class="form-control"  type="text" ng-show='isHoverMe' ng-model="searchText" placeholder="חיפוש" autofocus >
+                <input class="form-control" type="text" ng-show='isHoverMe' ng-model="searchText" placeholder="חיפוש"
+                    autofocus>
 
 
             </div>
@@ -76,23 +77,26 @@
                         </li>
 
                     </div>
-                    <div ng-hide="custom || !participations">
-                        <span ng-click="custom=true" class="text-center font-weight-bold close-btn"><i style="font-size:1.25rem;line-height: 1.5;" class="fas fa-times"></i></span>
+                    
+                    
+                    
+                    <div ng-hide="custom || !participations" ng-click="custom=true" class="text-center close-btn">
+                        <i style="font-size:1.25rem;line-height: 1.5;" class="fas fa-times"></i>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+    
+    
     <div class="container">
-        <div class="row mt-1">
-            <div class="col-sm-10 mx-auto text-center mt-2">
+        <div class="row ">
+            <div class="col-sm-10 mx-auto text-center ">
                 <div class="accordion" id="accordionExample">
                     <div class="card" ng-repeat="lotterie in lotteries  | orderBy:'lotterie':true | filter : sortByStatus | filter : searchText"
                         style="background-color: #546A7B;">
                         <div class="card-header" id="{{lotterie.productName}}" ng-click="isAlreadyIn(lotterie.id)"
-                        data-toggle="collapse" data-target="#{{lotterie.id}}" aria-expanded="false"
-                        aria-controls="{{lotterie.id}}" >
+                            data-toggle="collapse" data-target="#{{lotterie.id}}" aria-expanded="false" aria-controls="{{lotterie.id}}">
 
                             <h5 class="mb-0">
                                 <!-- <span class="float-left text-danger" ng-show="{{lotterie.chance}} >= 0.1 && {{lotterie.chance}} <= 0.5">
@@ -110,7 +114,7 @@
                                     data-toggle="collapse" data-target="#{{lotterie.id}}" aria-expanded="false"
                                     aria-controls="{{lotterie.id}}" style=" color:#eeeeee">{{lotterie.productName}}
                                 </button> -->
-                                <div class="lotteryName" >{{lotterie.productName}}</div>
+                                <div class="lotteryName">{{lotterie.productName}}</div>
                             </h5>
                         </div>
 
@@ -120,13 +124,13 @@
                             <div class="card-body mb-1">
                                 <div class="row">
 
-                                    <div class="col-sm-3 font-weight-bold text-right py-2">תיאור המוצר:
+                                    <div class="col-sm-3 font-weight-bold text-right">תיאור המוצר:
 
                                         <div class="font-weight-normal text-right" style="font-size:0.8rem;">{{lotterie.description}}</div>
 
                                     </div>
 
-                                    <div class="col-sm-3 font-weight-bold text-right py-2">דמי השתתפות:
+                                    <div class="col-sm-3 font-weight-bold text-right">דמי השתתפות:
 
                                         <div class="font-weight-normal text-right" style="font-size:0.8rem;">{{lotterie.lotteriePrice
                                             |
@@ -134,14 +138,14 @@
                                             ש"ח
                                         </div>
                                     </div>
-                                    <div class="col-sm-3 font-weight-bold text-right py-2">אחוזי זכייה:
+                                    <div class="col-sm-3 font-weight-bold text-right">אחוזי זכייה:
                                         <div style="font-size:0.8rem;" class="font-weight-normal text-right">%
                                             {{lotterie.chance}}
-                                        
+
                                         </div>
 
                                     </div>
-                                    <div class="col-sm-3 font-weight-bold text-right py-2">התחיל:
+                                    <div class="col-sm-3 font-weight-bold text-right">התחיל:
                                         <div style="font-size:0.8rem;" class="font-weight-normal text-right">
                                             {{lotterie.startTime}}</div>
 
@@ -162,10 +166,10 @@
                                 </div>
 
 
-                                <div class="col-sm-12 mt-5 text-left" ng-hide='{{lotterie.complete}}>=100 || alreadyIn'>
+                                <div class="col-sm-12 mt-2 text-left" ng-hide='{{lotterie.complete}}>=100 || alreadyIn'>
 
-                                    <button type="button" class="btn btn-color" data-toggle="modal"
-                                        data-target=".{{lotterie.id}}" ng-click="getAndCount($event, lotterie.id);">הצטרף</button>
+                                    <button type="button" class="btn btn-color" data-toggle="modal" data-target=".{{lotterie.id}}"
+                                        ng-click="getAndCount($event, lotterie.id);">הצטרף</button>
 
                                     <div class="text-muted" style="font-size: 0.8rem;">{{lotterie.complete}}%
                                         משתתפים</div>
@@ -192,7 +196,8 @@
                                         <p></p>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-outline-secondary mx-1  btn-sm" data-dismiss="modal">ביטול</button>
+                                        <button type="button" class="btn btn-outline-secondary mx-1  btn-sm"
+                                            data-dismiss="modal">ביטול</button>
                                         <button type="button" class="btn btn-color  btn-sm" data-dismiss="modal">אישור
                                             ותשלום</button>
                                     </div>
@@ -208,7 +213,7 @@
 
     </div>
 
-    <div class="card-footer fixed-bottom text-muted text-center py-1" style="font-size: 0.8rem;; color:#000;background-color: #E4C3AD">
+    <div class="card-footer fixed-bottom text-muted text-center py-1" style="font-size: 0.8rem; color:#fff;background-color: #0D1F2D;">
         CODED BY LIOR-SHMERLING
     </div>
 
