@@ -5,7 +5,7 @@ app.factory('newSrv', function ($q, $http) {
 
         var async = $q.defer();
 
-        var itemsUrl = 'https://json-server-heroku-ctnjrlaexn.now.sh/lotteries';
+        var itemsUrl = 'https://json-server-heroku-gdbvjogudp.now.sh/lotteries';
 
         var patch = {
             productName: productName,

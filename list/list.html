@@ -114,6 +114,7 @@
                                     data-toggle="collapse" data-target="#{{lotterie.id}}" aria-expanded="false"
                                     aria-controls="{{lotterie.id}}" style=" color:#eeeeee">{{lotterie.productName}}
                                 </button> -->
+                                <img ng-src="{{lotterie.image}}">
                                 <div class="lotteryName">{{lotterie.productName}}</div>
                             </h5>
                         </div>
@@ -151,12 +152,12 @@
 
                                     </div>
 
-                                    <div class="col-sm-12 mx-auto mt-5" ng-show='{{lotterie.complete}}>=100'>
+                                    <div class="col-sm-12 mx-auto mt-2" ng-show='{{lotterie.complete}}>=100'>
                                         <div class="alert alert-danger" role="alert">
                                             <strong>ההגרלה הסתיימה! </strong>לא ניתן להצטרף להגרלה זו.
                                         </div>
                                     </div>
-                                    <div class="col-sm-12 mx-auto mt-5" ng-hide='!alreadyIn || {{lotterie.complete}}>=100 '>
+                                    <div class="col-sm-12 mx-auto mt-2" ng-hide='!alreadyIn || {{lotterie.complete}}>=100 '>
                                         <div class="alert alert-warning" role="alert">
                                             <strong>כבר הצטרפת! </strong>לא ניתן להצטרף להגרלה זו.
                                         </div>

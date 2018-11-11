@@ -12,8 +12,8 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
             this.buyerUserId = buyerUserId,
             this.isPaid = isPaid,
             this.complete = parseInt((((this.competitors.length) / this.numberOfParticipants) * 100).toFixed(0)),
-            this.startTime = startTime
-        this.chance = (100 * (1 / this.numberOfParticipants)).toFixed(1),
+            this.startTime = startTime,
+            this.chance = (100 * (1 / this.numberOfParticipants)).toFixed(1),
             this.id = id
     }
 
@@ -21,15 +21,16 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
         var lotteries = [];
 
         var async = $q.defer();
-        var itemsUrl = 'https://json-server-heroku-ctnjrlaexn.now.sh/lotteries';
+        var itemsUrl = 'https://json-server-heroku-gdbvjogudp.now.sh/lotteries';
 
         $http.get(itemsUrl).then(function (response) {
 
             response.data.forEach(function (lotterie) {
-
+                
                 lotteries.push(new Lotterie(lotterie.productName, lotterie.description, lotterie.marketPrice, lotterie.numberOfParticipants, lotterie.lotteriePrice,
                     lotterie.image, lotterie.sellerUserId, lotterie.competitors, lotterie.buyerUserId, lotterie.isPaid, lotterie.complete, lotterie.startTime, lotterie.id, lotterie.chance));
-            });
+                });
+                console.log(lotteries);
 
             async.resolve(lotteries);
         }, function (err) {
@@ -42,7 +43,7 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
     function getAllCompetitors(idxOfLotterie) {
 
         var async = $q.defer();
-        var itemsUrl = 'https://json-server-heroku-ctnjrlaexn.now.sh/lotteries/' + idxOfLotterie
+        var itemsUrl = 'https://json-server-heroku-gdbvjogudp.now.sh/lotteries/' + idxOfLotterie
         $http.get(itemsUrl).then(function (lotterie) {
 
             async.resolve(lotterie.data['competitors']);
@@ -56,7 +57,7 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
 
         var async = $q.defer();
 
-        var itemsUrl = 'https://json-server-heroku-ctnjrlaexn.now.sh/users/' + userId
+        var itemsUrl = 'https://json-server-heroku-gdbvjogudp.now.sh/users/' + userId
 
         $http.get(itemsUrl).then(function (user) {
 
@@ -72,7 +73,7 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
 
         var async = $q.defer();
         var userId = loginSrv.getActiveUser().id
-        var itemsUrl = 'https://json-server-heroku-ctnjrlaexn.now.sh/users/' + userId
+        var itemsUrl = 'https://json-server-heroku-gdbvjogudp.now.sh/users/' + userId
 
         if (participations != undefined) {
             participation = participations
@@ -101,7 +102,7 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
         var competitors = competitors
 
         var async = $q.defer();
-        var itemsUrl = 'https://json-server-heroku-ctnjrlaexn.now.sh/lotteries/' + idxOfLotterie
+        var itemsUrl = 'https://json-server-heroku-gdbvjogudp.now.sh/lotteries/' + idxOfLotterie
         var userId = loginSrv.getActiveUser().id
 
         competitors.push(userId);
@@ -128,7 +129,7 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
     function lotteryGen(idxOfLottery) {
 
         var async = $q.defer();
-        var Url = 'https://json-server-heroku-ctnjrlaexn.now.sh/lotteries/' + idxOfLottery
+        var Url = 'https://json-server-heroku-gdbvjogudp.now.sh/lotteries/' + idxOfLottery
         $http.get(Url).then(function (response) {
             var winnerIdPosition = getRandomNum(0, (((response.data["competitors"]).length) - 1))
 
@@ -144,7 +145,7 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
 
 
         var async = $q.defer();
-        var itemUrl = 'https://json-server-heroku-ctnjrlaexn.now.sh/users/' + winnerId
+        var itemUrl = 'https://json-server-heroku-gdbvjogudp.now.sh/users/' + winnerId
 
         winner.push({
             time: time,
@@ -171,7 +172,7 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
             var participation = losers[i];
 
             var async = $q.defer();
-            var itemUrl = 'https://json-server-heroku-ctnjrlaexn.now.sh/users/' + participation
+            var itemUrl = 'https://json-server-heroku-gdbvjogudp.now.sh/users/' + participation
 
             loser.push({
                 time: time,
@@ -197,7 +198,7 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
     function getTheWinner(userId) {
 
         var async = $q.defer();
-        var Url = 'https://json-server-heroku-ctnjrlaexn.now.sh/users/' + userId
+        var Url = 'https://json-server-heroku-gdbvjogudp.now.sh/users/' + userId
         $http.get(Url).then(function (lottery) {
 
             async.resolve(lottery.data.winner);
@@ -210,7 +211,7 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
     function getTheLoser(userId) {
 
         var async = $q.defer();
-        var Url = 'https://json-server-heroku-ctnjrlaexn.now.sh/users/' + userId
+        var Url = 'https://json-server-heroku-gdbvjogudp.now.sh/users/' + userId
         $http.get(Url).then(function (lottery) {
 
             async.resolve(lottery.data.loser);
@@ -222,7 +223,7 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
 
     function getTheName(id) {
         var async = $q.defer();
-        var loginUrl = 'https://json-server-heroku-ctnjrlaexn.now.sh/users/' + id
+        var loginUrl = 'https://json-server-heroku-gdbvjogudp.now.sh/users/' + id
 
         $http.get(loginUrl).then(function (response) {
 
