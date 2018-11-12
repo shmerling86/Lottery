@@ -116,7 +116,7 @@
                                     aria-controls="{{lotterie.id}}" style=" color:#eeeeee">{{lotterie.productName}}
                                 </button> -->
                                 <div class="lotteryName d-inline">{{lotterie.productName}}</div>
-                                <div class="d-inline pr-3" data-toggle="modal" data-target=".{{lotterie.id}}">
+                                <div class="d-inline pr-3" >
                                     <img ng-src="{{lotterie.image}}" style="border-radius:50%;" width="30px" height="30px">
                                 </div>
                             </h5>
@@ -127,52 +127,60 @@
 
                             <div class="card-body mb-1">
                                 <div class="row">
+                                    <div class="col-sm-3 mb-2">
 
-                                    <div class="col-sm-3 font-weight-bold text-right">תיאור המוצר:
+                                        <div class="col-sm-12 font-weight-bold text-right">תיאור המוצר:
 
-                                        <div class="font-weight-normal text-right" style="font-size:0.8rem;">{{lotterie.description}}</div>
-
-                                    </div>
-
-                                    <div class="col-sm-3 font-weight-bold text-right">דמי השתתפות:
-
-                                        <div class="font-weight-normal text-right" style="font-size:0.8rem;">{{lotterie.lotteriePrice
-                                            |
-                                            number}}
-                                            ש"ח
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3 font-weight-bold text-right">אחוזי זכייה:
-                                        <div style="font-size:0.8rem;" class="font-weight-normal text-right">%
-                                            {{lotterie.chance}}
+                                            <div class="font-weight-normal text-right" style="font-size:0.8rem;">{{lotterie.description}}</div>
 
                                         </div>
 
-                                    </div>
-                                    <div class="col-sm-3 font-weight-bold text-right">התחיל:
-                                        <div style="font-size:0.8rem;" class="font-weight-normal text-right">
-                                            {{lotterie.startTime}}</div>
+                                        <div class="col-sm-12 font-weight-bold text-right">דמי השתתפות:
+
+                                            <div class="font-weight-normal text-right" style="font-size:0.8rem;">{{lotterie.lotteriePrice
+                                                |
+                                                number}}
+                                                ש"ח
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 font-weight-bold text-right">אחוזי זכייה:
+                                            <div style="font-size:0.8rem;" class="font-weight-normal text-right">%
+                                                {{lotterie.chance}}
+
+                                            </div>
+
+                                        </div>
+                                        <div class="col-sm-12 font-weight-bold text-right">התחיל:
+                                            <div style="font-size:0.8rem;" class="font-weight-normal text-right">
+                                                {{lotterie.startTime}}</div>
+
+                                        </div>
+
+
+
 
                                     </div>
 
-                                    <div class="col-sm-12 mx-auto mt-2" ng-show='{{lotterie.complete}}>=100'>
-                                        <div class="alert alert-danger" role="alert">
-                                            <strong>ההגרלה הסתיימה! </strong>לא ניתן להצטרף להגרלה זו.
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 mx-auto mt-2" ng-hide='!alreadyIn || {{lotterie.complete}}>=100 '>
-                                        <div class="alert alert-warning" role="alert">
-                                            <strong>כבר הצטרפת! </strong>לא ניתן להצטרף להגרלה זו.
-                                        </div>
+                                    <div class="col-sm-9">
+                                        <img ng-src="{{lotterie.image}}" id="imgSize">
                                     </div>
 
 
                                 </div>
-
+                                <div class="col-sm-12 mx-auto mt-2" ng-show='{{lotterie.complete}}>=100'>
+                                    <div class="alert alert-danger" role="alert">
+                                        <strong>ההגרלה הסתיימה! </strong>לא ניתן להצטרף להגרלה זו.
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 mx-auto mt-2" ng-hide='!alreadyIn || {{lotterie.complete}}>=100 '>
+                                    <div class="alert alert-warning" role="alert">
+                                        <strong>כבר הצטרפת! </strong>לא ניתן להצטרף להגרלה זו.
+                                    </div>
+                                </div>
 
                                 <div class="col-sm-12 mt-2 text-left" ng-hide='{{lotterie.complete}}>=100 || alreadyIn'>
 
-                                    <button type="button" class="btn btn-color" data-toggle="modal" data-target=".{{lotterie.id}}"
+                                    <button type="button" class="btn btn-color font-weight-bold" data-toggle="modal" data-target=".{{lotterie.id}}"
                                         ng-click="getAndCount($event, lotterie.id);">הצטרף</button>
 
                                     <div class="text-muted" style="font-size: 0.8rem;">{{lotterie.complete}}%
@@ -184,17 +192,6 @@
                             </div>
                         </div>
 
-
-
-                        <div class="modal fade bd-example-modal-sm {{lotterie.id}}" tabindex="-1" role="dialog"
-                            aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-sm">
-                                <div class="modal-content">
-                                    <a href="{{lotterie.image}}">
-                                        <img ng-src="{{lotterie.image}}" width="300px" height="300px"></a>
-                                </div>
-                            </div>
-                        </div>
 
                         <!-- Modal -->
                         <div class="modal fade {{lotterie.id}}" tabindex="-1" role="dialog" aria-hidden="true">

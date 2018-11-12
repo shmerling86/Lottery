@@ -100,6 +100,11 @@ body, html {
     background-color: #bbb;
 }
 
+#imgSize{
+    height: 172px;
+
+}
+
 .list-group{
     max-height: 355px;
     margin-bottom: 10px;
