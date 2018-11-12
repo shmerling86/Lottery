@@ -127,7 +127,8 @@
 
                             <div class="card-body mb-1">
                                 <div class="row">
-                                    <div class="col-sm-3 mb-2">
+                                    <div class="col-sm-3 mb-2
+                                    ">
 
                                         <div class="col-sm-12 font-weight-bold text-right">תיאור המוצר:
 
@@ -180,10 +181,10 @@
 
                                 <div class="col-sm-12 mt-2 text-left" ng-hide='{{lotterie.complete}}>=100 || alreadyIn'>
 
-                                    <button type="button" class="btn btn-color font-weight-bold" data-toggle="modal" data-target=".{{lotterie.id}}"
+                                    <button type="button" class="btn btn-color font-weight-bold btn-block" data-toggle="modal" data-target=".{{lotterie.id}}"
                                         ng-click="getAndCount($event, lotterie.id);">הצטרף</button>
 
-                                    <div class="text-muted" style="font-size: 0.8rem;">{{lotterie.complete}}%
+                                    <div class="text-muted text-right" style="font-size: 0.8rem;">{{lotterie.complete}}%
                                         משתתפים</div>
 
                                 </div>
