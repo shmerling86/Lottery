@@ -18,8 +18,6 @@ app.controller('newCtrl', function ($scope, newSrv, loginSrv, listSrv, $location
     };
     $scope.sellerUserId = loginSrv.getActiveUser().id;
 
-
-
     moment.locale('he');
     $scope.startTime = moment().format();
 

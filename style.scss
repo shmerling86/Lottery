@@ -1,0 +1,156 @@
+$bodyBg:#9EA3B0; 
+$redBg: red;
+$textColor: #546A7B;
+
+body{
+    background-color: $bodyBg;
+}
+
+body{
+    color:$textColor;
+    direction: rtl;    
+}
+
+input.ng-invalid.ng-dirty{
+    border: 1px solid $redBg;
+}
+
+a{
+    color:$textColor;
+}
+
+a>.btn{
+    font-size: 1.8rem;
+
+}
+
+
+a:hover{
+    color:$textColor;
+    text-decoration: none;
+
+
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+.bg {
+    background-image: url("img/1.jpg"); 
+    min-height: 94%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.card-body{
+    background: $bodyBg;
+}
+
+.spl{
+    letter-spacing: 1px;
+}
+
+
+.active{
+    background-color: #6c757d;
+    color: #eeeeee;
+}
+
+.float-right>a:hover,
+.float-right>i:hover{
+    color: $textColor;
+}
+
+.numOfMsg{
+    position: absolute;
+    top: -29%;
+    right: -52%;
+    font-size: .5em;
+    background: $redBg;
+    color: white;
+    width: 12px;
+    height: 12px;
+    text-align: center;
+    line-height: 12px;
+    border-radius: 50%;
+    box-shadow: 0 0 1px #333;
+}
+
+ .card:last-child {
+    margin-bottom: 3rem;
+}
+
+.close-btn{
+    position: absolute;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px; 
+    top: 100%;
+    right: 44%;
+    background-color: #bbb;
+}
+
+#imgSize{
+    height: 172px;
+}
+
+.list-group{
+    max-height: 355px;
+    margin-bottom: 10px;
+    overflow:scroll;
+    overflow-x: hidden;
+}
+
+.lotteryName{
+    cursor: pointer;
+    color: $bodyBg;
+    background-color: transparent;
+    font-weight: 600;
+    text-align: center;
+    font-size: 1rem;
+    line-height: 2.4;
+}
+
+.btn-color{
+    background-color: #E4C3AD;
+    border-color: none; 
+    color: $textColor;
+}
+
+.notificationBox{
+    position: absolute;
+    width: 53%;
+    z-index:1;
+    right: 23%;
+    padding: 0 3px;
+    margin-bottom:5rem;
+}
+
+@media only screen and (max-width: 481px) {
+    .card-group {
+        display: none;
+    }
+
+    .bg {
+        min-height: 89%; 
+    }
+
+    .numOfMsg{
+        position: absolute;
+        right: -52%;
+        top: -33%;
+    }
+
+    .notificationBox{
+        width: 84%;
+        right:8%;
+    }
+
+    #imgSize{
+        width: 250px;
+    
+    }
+}

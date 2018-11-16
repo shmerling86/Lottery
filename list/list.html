@@ -99,7 +99,7 @@
                         <div class="card-header" id="{{lotterie.productName}}" ng-click="isAlreadyIn(lotterie.id)"
                             data-toggle="collapse" data-target="#{{lotterie.id}}" aria-expanded="false" aria-controls="{{lotterie.id}}">
 
-                            <h5 class="mb-0">
+                            <!-- <h5 class="mb-0"> -->
                                 <!-- <span class="float-left text-danger" ng-show="{{lotterie.chance}} >= 0.1 && {{lotterie.chance}} <= 0.5">
                                     <i class="fas fa-dice-two my-2" style="font-size:1.8rem;"></i></span>
                                 <span class="float-left text-warning" ng-show="{{lotterie.chance}} > 0.5 && {{lotterie.chance}} < 10">
@@ -115,11 +115,11 @@
                                     data-toggle="collapse" data-target="#{{lotterie.id}}" aria-expanded="false"
                                     aria-controls="{{lotterie.id}}" style=" color:#eeeeee">{{lotterie.productName}}
                                 </button> -->
-                                <div class="lotteryName d-inline">{{lotterie.productName}}</div>
-                                <div class="d-inline pr-3" >
-                                    <img ng-src="{{lotterie.image}}" style="border-radius:50%;" width="30px" height="30px">
-                                </div>
-                            </h5>
+                                <!-- </h5> -->
+                                    <div class="d-inline float-right" >
+                                        <img ng-src="{{lotterie.image}}" style="border-radius:50%;" width="30px" height="30px">
+                                    </div>
+                                    <div class="lotteryName d-inline">{{lotterie.productName}}</div>
                         </div>
 
                         <div id="{{lotterie.id}}" class="collapse" aria-labelledby="{{lotterie.productName}}"

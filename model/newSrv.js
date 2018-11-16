@@ -29,8 +29,6 @@ app.factory('newSrv', function ($q, $http) {
         });
         return async.promise;
     }
-
-    
   
     return {
 
