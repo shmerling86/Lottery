@@ -41,9 +41,11 @@ a{
     color: #eeeeee;
 }
 
-.float-right>a:hover,
-.float-right>i:hover{
-    color: $textColor;
+.float-right>a,
+.float-right>i{
+    &:hover{
+        color: $textColor;
+    }
 }
 
 .numOfMsg{
@@ -61,8 +63,10 @@ a{
     box-shadow: 0 0 1px #333;
 }
 
- .card:last-child {
-    margin-bottom: 3rem;
+ .card {
+     &:last-child{
+        margin-bottom: 3rem;
+    }
 }
 
 .close-btn{
@@ -110,8 +114,4 @@ a{
     right: 23%;
     padding: 0 3px;
     margin-bottom:5rem;
-}
-
-.ccc{
-    fff:f;
 }

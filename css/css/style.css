@@ -1,3 +1,18 @@
+@media only screen and (max-width: 481px) {
+  .card-group {
+    display: none; }
+  .bg {
+    min-height: 89%; }
+  .numOfMsg {
+    position: absolute;
+    right: -52%;
+    top: -33%; }
+  .notificationBox {
+    width: 84%;
+    right: 8%; }
+  #imgSize {
+    width: 250px; } }
+
 body {
   background-color: #9EA3B0;
   color: #546A7B;
@@ -44,6 +59,7 @@ a {
   text-align: center;
   line-height: 12px;
   border-radius: 50%;
+  -webkit-box-shadow: 0 0 1px #333;
   box-shadow: 0 0 1px #333; }
 
 .card:last-child {
@@ -89,4 +105,3 @@ a {
   right: 23%;
   padding: 0 3px;
   margin-bottom: 5rem; }
-
