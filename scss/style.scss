@@ -1,14 +1,15 @@
+@import "smallScreen";
+
 $bodyBg:#9EA3B0; 
 $redBg: red;
 $textColor: #546A7B;
 
 body{
     background-color: $bodyBg;
-}
-
-body{
     color:$textColor;
-    direction: rtl;    
+    direction: rtl;   
+    height: 100%;
+    margin: 0; 
 }
 
 input.ng-invalid.ng-dirty{
@@ -17,24 +18,10 @@ input.ng-invalid.ng-dirty{
 
 a{
     color:$textColor;
-}
-
-a>.btn{
-    font-size: 1.8rem;
-
-}
-
-
-a:hover{
-    color:$textColor;
+    &:hover{
+        color:$textColor;
     text-decoration: none;
-
-
-}
-
-body, html {
-    height: 100%;
-    margin: 0;
+    }
 }
 
 .bg {
@@ -46,10 +33,6 @@ body, html {
 }
 .card-body{
     background: $bodyBg;
-}
-
-.spl{
-    letter-spacing: 1px;
 }
 
 
@@ -129,28 +112,6 @@ body, html {
     margin-bottom:5rem;
 }
 
-@media only screen and (max-width: 481px) {
-    .card-group {
-        display: none;
-    }
-
-    .bg {
-        min-height: 89%; 
-    }
-
-    .numOfMsg{
-        position: absolute;
-        right: -52%;
-        top: -33%;
-    }
-
-    .notificationBox{
-        width: 84%;
-        right:8%;
-    }
-
-    #imgSize{
-        width: 250px;
-    
-    }
+.ccc{
+    fff:f;
 }
