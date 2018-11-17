@@ -15,15 +15,15 @@
 
                         <div class="text-center d-inline-block" ng-show='isHover'>
 
-                            <input type="button" style="font-size:0.8rem;" class="btn btn-outline-muted btn-sm "
+                            <input type="button" class="btn btn-outline-muted btn-sm littleFont"
                                 ng-class="{'active':taskfilters == 1}" ng-click="kindOfSort = 'all';taskfilters = 1"
                                 value="הכל">
 
-                            <input type="button" style="font-size:0.8rem;" class="btn btn-outline-muted btn-sm" ng-init="taskfilters = 0"
+                            <input type="button" class="btn btn-outline-muted btn-sm littleFont" ng-init="taskfilters = 0"
                                 ng-class="{'active':taskfilters == 0}" ng-click="kindOfSort = 'active';taskfilters = 0"
                                 value="פעיל">
 
-                            <input type="button" style="font-size:0.8rem;" class="btn btn-outline-muted btn-sm"
+                            <input type="button" class="btn btn-outline-muted btn-sm littleFont"
                                 ng-class="{'active':taskfilters == 2}" ng-click="kindOfSort = 'completed';taskfilters = 2"
                                 value="הסתיים">
                         </div>
@@ -68,8 +68,8 @@
                         </li>
 
                         <li class="list-group-item" ng-hide="custom" ng-repeat="participation in participations | orderBy:participation.time:true">
-                            <span class="text-left text-muted" style="font-size: 0.6rem">{{participation.time}}</span>
-                            <span class="text-right mr-3 d-block" style="font-size: 0.7rem">
+                            <span class="text-left text-muted" style="font-size: 0.7rem">{{participation.time}}</span>
+                            <span class="text-right mr-3 d-block" style="font-size: 0.8rem">
                                 <strong>הצטרפת </strong>להגרלה על
 
                                 {{participation.lotteryN}}.</span>
@@ -132,27 +132,27 @@
 
                                         <div class="col-sm-12 font-weight-bold text-right">תיאור המוצר:
 
-                                            <div class="font-weight-normal text-right" style="font-size:0.8rem;">{{lotterie.description}}</div>
+                                            <div class="font-weight-normal text-right littleFont">{{lotterie.description}}</div>
 
                                         </div>
 
                                         <div class="col-sm-12 font-weight-bold text-right">דמי השתתפות:
 
-                                            <div class="font-weight-normal text-right" style="font-size:0.8rem;">{{lotterie.lotteriePrice
+                                            <div class="font-weight-normal text-right littleFont">{{lotterie.lotteriePrice
                                                 |
                                                 number}}
                                                 ש"ח
                                             </div>
                                         </div>
                                         <div class="col-sm-12 font-weight-bold text-right">אחוזי זכייה:
-                                            <div style="font-size:0.8rem;" class="font-weight-normal text-right">%
+                                            <div class="font-weight-normal text-right littleFont">%
                                                 {{lotterie.chance}}
 
                                             </div>
 
                                         </div>
                                         <div class="col-sm-12 font-weight-bold text-right">התחיל:
-                                            <div style="font-size:0.8rem;" class="font-weight-normal text-right">
+                                            <div class="font-weight-normal text-right littleFont">
                                                 {{lotterie.startTime}}</div>
 
                                         </div>
@@ -184,7 +184,7 @@
                                     <button type="button" class="btn btn-color font-weight-bold btn-block" data-toggle="modal" data-target=".{{lotterie.id}}"
                                         ng-click="getAndCount($event, lotterie.id);">הצטרף</button>
 
-                                    <div class="text-muted text-right" style="font-size: 0.8rem;">{{lotterie.complete}}%
+                                    <div class="text-muted text-right littleFont">{{lotterie.complete}}%
                                         משתתפים</div>
 
                                 </div>
@@ -227,7 +227,7 @@
 
     </div>
 
-    <div class="card-footer fixed-bottom text-muted text-center py-1" style="font-size: 0.8rem; color:#fff;background-color: #0D1F2D;">
+    <div class="card-footer fixed-bottom text-muted text-center py-1 littleFont" style="color:#fff;background-color: #0D1F2D;">
         CODED BY LIOR-SHMERLING
     </div>
 

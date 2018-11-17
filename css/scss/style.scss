@@ -1,15 +1,22 @@
-@import "smallScreen";
+
 
 $bodyBg:#9EA3B0; 
 $redBg: red;
 $textColor: #546A7B;
 
+@mixin littleFont {
+    font-size:0.8rem;
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
 body{
     background-color: $bodyBg;
     color:$textColor;
     direction: rtl;   
-    height: 100%;
-    margin: 0; 
 }
 
 input.ng-invalid.ng-dirty{
@@ -115,3 +122,9 @@ a{
     padding: 0 3px;
     margin-bottom:5rem;
 }
+
+.littleFont{
+    @include littleFont;
+}
+
+@import "styleMobile";
