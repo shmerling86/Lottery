@@ -4,3 +4,9 @@
 @mixin littleFontSec {
     font-size:0.7rem;
 }
+@mixin mQ($arg) {
+    @media screen and (max-width:$arg){
+        @content;
+    }
+
+}

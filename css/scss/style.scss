@@ -1,6 +1,7 @@
 $bodyBg:#9EA3B0; 
 $redBg: red;
 $textColor: #546A7B;
+$btnColor:#E4C3AD;
 
 @import "mixin";
 
@@ -22,18 +23,10 @@ input.ng-invalid.ng-dirty{
 a{
     color:$textColor;
     &:hover{
-        color:$textColor;
         text-decoration: none;
     }
 }
 
-.bg {
-    background-image: url("img/1.jpg"); 
-    min-height: 94%; 
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
 .card-body{
     background: $bodyBg;
 }
@@ -63,12 +56,32 @@ a{
     line-height: 12px;
     border-radius: 50%;
     box-shadow: 0 0 1px #333;
+    @include mQ(480px){
+        position: absolute;
+        right: -52%;
+        top: -33%;
+    }
 }
 
  .card {
     background-color: #546A7B;
      &:last-child{
         margin-bottom: 3rem;
+    }
+     &:hover{
+       background: lighten(#546A7B, 6);
+   }
+}
+
+.btn-color{
+    background-color: $btnColor;
+    border-color: none; 
+    color: $textColor;
+}
+
+.btn-color{
+    &:hover:enabled{
+        background-color: complement($btnColor);
     }
 }
 
@@ -80,7 +93,6 @@ a{
     margin: 0 47.5%;
     top: 100%;
     background-color: #bbb;
-   
 }
 
 .close-btn{
@@ -88,10 +100,17 @@ a{
       font-size:1.25rem;
       line-height: 1.5;  
     }
+    @include mQ(480px){
+        width: 8%;
+        margin: 0 46%;
+    }
 }
 
 #imgSize{
     height: 172px;
+    @include mQ(480px){
+        width: 250px;
+    }
 }
 
 .list-group{
@@ -117,12 +136,6 @@ a{
     height: 30px;
 }
 
-.btn-color{
-    background-color: #E4C3AD;
-    border-color: none; 
-    color: $textColor;
-}
-
 .notificationBox{
     position: absolute;
     width: 53%;
@@ -130,6 +143,10 @@ a{
     right: 23%;
     padding: 0 3px;
     margin-bottom:5rem;
+    @include mQ(480px){
+        width: 84%;
+        right: 8%;
+    }
 }
 
 .card-footer-colors{
@@ -144,6 +161,12 @@ a{
     }
 }
 
+.card-group {
+    @include mQ(480px){
+        display: none;
+    }
+}
+
 .littleFont{
     @include littleFont;
 }
@@ -152,4 +175,3 @@ a{
     @include littleFontSec;
 }
 
-@import "styleMobile";

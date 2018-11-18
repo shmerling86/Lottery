@@ -13,15 +13,7 @@ input.ng-invalid.ng-dirty {
 a {
   color: #546A7B; }
   a:hover {
-    color: #546A7B;
     text-decoration: none; }
-
-.bg {
-  background-image: url("img/1.jpg");
-  min-height: 94%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover; }
 
 .card-body {
   background: #9EA3B0; }
@@ -48,11 +40,26 @@ a {
   border-radius: 50%;
   -webkit-box-shadow: 0 0 1px #333;
   box-shadow: 0 0 1px #333; }
+  @media screen and (max-width: 480px) {
+    .numOfMsg {
+      position: absolute;
+      right: -52%;
+      top: -33%; } }
 
 .card {
   background-color: #546A7B; }
   .card:last-child {
     margin-bottom: 3rem; }
+  .card:hover {
+    background: #607a8d; }
+
+.btn-color {
+  background-color: #E4C3AD;
+  border-color: none;
+  color: #546A7B; }
+
+.btn-color:hover:enabled {
+  background-color: #adcee4; }
 
 .close-btn {
   position: absolute;
@@ -67,8 +74,16 @@ a {
   font-size: 1.25rem;
   line-height: 1.5; }
 
+@media screen and (max-width: 480px) {
+  .close-btn {
+    width: 8%;
+    margin: 0 46%; } }
+
 #imgSize {
   height: 172px; }
+  @media screen and (max-width: 480px) {
+    #imgSize {
+      width: 250px; } }
 
 .list-group {
   max-height: 355px;
@@ -90,11 +105,6 @@ a {
   width: 30px;
   height: 30px; }
 
-.btn-color {
-  background-color: #E4C3AD;
-  border-color: none;
-  color: #546A7B; }
-
 .notificationBox {
   position: absolute;
   width: 53%;
@@ -102,6 +112,10 @@ a {
   right: 23%;
   padding: 0 3px;
   margin-bottom: 5rem; }
+  @media screen and (max-width: 480px) {
+    .notificationBox {
+      width: 84%;
+      right: 8%; } }
 
 .card-footer-colors {
   color: #fff;
@@ -112,26 +126,12 @@ a {
   .navbarColor a {
     color: #eeeeee; }
 
+@media screen and (max-width: 480px) {
+  .card-group {
+    display: none; } }
+
 .littleFont {
   font-size: 0.8rem; }
 
 .littleFontSec {
   font-size: 0.7rem; }
-
-@media only screen and (max-width: 480px) {
-  .card-group {
-    display: none; }
-  .bg {
-    min-height: 89%; }
-  .numOfMsg {
-    position: absolute;
-    right: -52%;
-    top: -33%; }
-  .notificationBox {
-    width: 84%;
-    right: 8%; }
-  .close-btn {
-    width: 8%;
-    margin: 0 46%; }
-  #imgSize {
-    width: 250px; } }
