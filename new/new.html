@@ -11,9 +11,9 @@
                     <div class="form-row font-weight-bold">
                         <label for="productName">שם המוצר</label>
                         <input type="text" id="name" name="product" ng-model="productName" ng-minlength='6' ng-maxlength='30'  class="form-control text-muted mb-2 font-italic" autofocus required>
-                        <span class="text-danger float-right mb-1" ng-show="frm.product.$dirty && frm.product.$error.required" style="font-size:0.7rem;">שדה חובה</span>
-                        <span class="text-danger float-right mb-1" ng-show="frm.product.$dirty && frm.product.$error.minlength" style="font-size:0.7rem;">קצר מידי</span>
-                        <span class="text-danger float-right mb-1" ng-show="frm.product.$dirty && frm.product.$error.maxlength" style="font-size:0.7rem;">ארוך מידי</span>
+                        <span class="text-danger float-right mb-1 littleFontSec" ng-show="frm.product.$dirty && frm.product.$error.required">שדה חובה</span>
+                        <span class="text-danger float-right mb-1 littleFontSec" ng-show="frm.product.$dirty && frm.product.$error.minlength">קצר מידי</span>
+                        <span class="text-danger float-right mb-1 littleFontSec" ng-show="frm.product.$dirty && frm.product.$error.maxlength">ארוך מידי</span>
                     </div>
 
                     <div class="form-row font-weight-bold">
@@ -30,8 +30,8 @@
                             oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                             type = "number"
                             maxlength = "6" required>
-                            <span class="text-danger float-right mb-1" ng-show="frm.price.$dirty && frm.price.$error.required" style="font-size:0.7rem;">שדה חובה</span>
-                            <span class="text-danger float-right mb-1" ng-show="frm.price.$dirty && frm.price.$error.minlength" style="font-size:0.7rem;">נמוך מידי</span>
+                            <span class="text-danger float-right mb-1 littleFontSec" ng-show="frm.price.$dirty && frm.price.$error.required">שדה חובה</span>
+                            <span class="text-danger float-right mb-1 littleFontSec" ng-show="frm.price.$dirty && frm.price.$error.minlength">נמוך מידי</span>
 
                         </div>
                        
@@ -42,8 +42,8 @@
                                 oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                 type = "number"
                                 maxlength = "3" required>
-                                <span class="text-danger float-right mb-1" ng-show="frm.participations.$dirty && frm.participations.$error.required" style="font-size:0.7rem;">שדה חובה</span>
-                                <span class="text-danger float-right mb-1" ng-show="frm.participations.$dirty && frm.participations.$error.minlength" style="font-size:0.7rem;">נמוך מידי</span>
+                                <span class="text-danger float-right mb-1 littleFontSec" ng-show="frm.participations.$dirty && frm.participations.$error.required">שדה חובה</span>
+                                <span class="text-danger float-right mb-1 littleFontSec" ng-show="frm.participations.$dirty && frm.participations.$error.minlength">נמוך מידי</span>
                             </div>
 
                     </div>

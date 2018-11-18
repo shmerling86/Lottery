@@ -1,12 +1,8 @@
-
-
 $bodyBg:#9EA3B0; 
 $redBg: red;
 $textColor: #546A7B;
 
-@mixin littleFont {
-    font-size:0.8rem;
-}
+@import "mixin";
 
 body, html {
     height: 100%;
@@ -27,7 +23,7 @@ a{
     color:$textColor;
     &:hover{
         color:$textColor;
-    text-decoration: none;
+        text-decoration: none;
     }
 }
 
@@ -41,7 +37,6 @@ a{
 .card-body{
     background: $bodyBg;
 }
-
 
 .active{
     background-color: #6c757d;
@@ -71,6 +66,7 @@ a{
 }
 
  .card {
+    background-color: #546A7B;
      &:last-child{
         margin-bottom: 3rem;
     }
@@ -85,7 +81,16 @@ a{
     top: 100%;
     right: 44%;
     background-color: #bbb;
+   
 }
+
+.close-btn{
+    i{
+      font-size:1.25rem;
+      line-height: 1.5;  
+    }
+}
+
 
 #imgSize{
     height: 172px;
@@ -108,6 +113,12 @@ a{
     line-height: 2.4;
 }
 
+#lotteryImg{
+    border-radius:50%;
+    width: 30px;
+    height: 30px;
+}
+
 .btn-color{
     background-color: #E4C3AD;
     border-color: none; 
@@ -123,8 +134,24 @@ a{
     margin-bottom:5rem;
 }
 
+.card-footer-colors{
+    color:#fff;
+    background-color: #0D1F2D;
+}
+
+.navbarColor{
+    color:#eeeeee;
+    a{
+        color:#eeeeee;
+    }
+}
+
 .littleFont{
     @include littleFont;
+}
+
+.littleFontSec{
+    @include littleFontSec;
 }
 
 @import "styleMobile";
