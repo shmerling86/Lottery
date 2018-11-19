@@ -3,18 +3,16 @@
 <div class="container">
     <div class="row mt-5">
         <div class="col-sm-12 mt-5">
-                <h1 class="h3 mb-3 font-weight-normal text-center">זכיות</h1>
+            <h1 class="h3 mb-3 font-weight-normal text-center">הזכיות שלי</h1>
 
-            <div class="text-right my-2 p-2" style="box-shadow: 0 0 3px #000;"  ng-repeat="winner in winners">
+            <div class="text-right my-2 p-2" ng-show='winners' style="box-shadow: 0 0 3px #000;" ng-repeat="winner in winners">
                 <div> ההגרלה: {{winner.finishLottery}}</div>
                 <div> המוכר: {{winner.seller}} </div>
-               <div >שלח למוכר פרטי משלוח: <button class="btn btn-primary btn-sm">שלח</button> </div>
+                <div>שלח למוכר פרטי משלוח: <button class="btn btn-primary btn-sm">שלח</button> </div>
             </div>
 
-            <div>
-
-
-
+            <div class="text-center alert alert-danger" ng-hide='winners'>
+                <strong> עדיין לא זכית </strong>
             </div>
 
 
