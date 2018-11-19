@@ -8,10 +8,6 @@ app.controller('signupCtrl', function ($scope, $location, signupSrv, loginSrv, l
         return loginSrv.isLoggedIn()
     }
 
-    listSrv.getTheName($scope.userId).then(function (name) {
-        $scope.name = name
-    });
-
     $scope.newUserName = '';
     $scope.email = '';
     $scope.password = '';

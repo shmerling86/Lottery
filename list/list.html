@@ -15,17 +15,15 @@
 
                         <div class="text-center d-inline-block" ng-show='isHover'>
 
-                            <input type="button" class="btn btn-outline-muted btn-sm littleFont"
-                                ng-class="{'active':taskfilters == 1}" ng-click="kindOfSort = 'all';taskfilters = 1"
-                                value="הכל">
+                            <input type="button" class="btn btn-outline-muted btn-sm littleFont" ng-class="{'active':taskfilters == 1}"
+                                ng-click="kindOfSort = 'all';taskfilters = 1" value="הכל">
 
                             <input type="button" class="btn btn-outline-muted btn-sm littleFont" ng-init="taskfilters = 0"
                                 ng-class="{'active':taskfilters == 0}" ng-click="kindOfSort = 'active';taskfilters = 0"
                                 value="פעיל">
 
-                            <input type="button" class="btn btn-outline-muted btn-sm littleFont"
-                                ng-class="{'active':taskfilters == 2}" ng-click="kindOfSort = 'completed';taskfilters = 2"
-                                value="הסתיים">
+                            <input type="button" class="btn btn-outline-muted btn-sm littleFont" ng-class="{'active':taskfilters == 2}"
+                                ng-click="kindOfSort = 'completed';taskfilters = 2" value="הסתיים">
                         </div>
                     </i>
                     <i class="fas fa-search mx-2" title="חיפוש" ng-model='isHoverMe' ng-click="isHoverMe=!isHoverMe;searchText='';"></i>
@@ -50,16 +48,15 @@
                 <div class="notificationBox">
                     <div class="list-group text-right">
 
-                        <li class="list-group-item" ng-hide="custom" ng-repeat="winner in winners| orderBy:winner.time:true">
+                        <li class="list-group-item shadow" ng-hide="custom" ng-repeat="winner in winners| orderBy:winner.time:true">
+                            <a ng-href="#!/winner">
+                                <span class="text-left text-muted littleFontSec">{{winner.time}}</span>
+                                <span class="text-right mr-3 d-block littleFont">
+                                    <strong>מזל טוב! </strong>זכית בהגרלה על
+                                    {{winner.finishLottery}}.
 
-                            <span class="text-left text-muted littleFontSec">{{winner.time}}</span>
-                            <span class="text-right mr-3 d-block littleFont">
-                                <strong>מזל טוב! </strong>זכית בהגרלה על
-                                {{winner.finishLottery}},  <span class="littleFont text-muted">לחץ <a ng-href="#!/winner" class="font-weight-bold">כאן</a> על מנת לממש את הזכייה.</span></span>
-                            
-                                
+                            </a>
                         </li>
-
                         <li class="list-group-item shadow littleFontSec" ng-hide="custom" ng-repeat="loser in losers | orderBy:loser.time:true">
                             <span class="text-left text-muted">{{loser.time}}</span>
                             <span class="text-right mr-3 d-block littleFont">
@@ -68,7 +65,7 @@
 
                         </li>
 
-                        <li class="list-group-item littleFontSec" ng-hide="custom" ng-repeat="participation in participations | orderBy:participation.time:true">
+                        <li class="list-group-item shadow littleFontSec" ng-hide="custom" ng-repeat="participation in participations | orderBy:participation.time:true">
                             <span class="text-left text-muted">{{participation.time}}</span>
                             <span class="text-right mr-3 d-block littleFont">
                                 <strong>הצטרפת </strong>להגרלה על
@@ -99,10 +96,10 @@
                         <div class="card-header" id="{{lotterie.productName}}" ng-click="isAlreadyIn(lotterie.id)"
                             data-toggle="collapse" data-target="#{{lotterie.id}}" aria-expanded="false" aria-controls="{{lotterie.id}}">
 
-                                    <div class="d-inline float-right my-2" >
-                                        <img ng-src="{{lotterie.image}}" id="lotteryImg">
-                                    </div>
-                                    <div class="lotteryName d-inline">{{lotterie.productName}}</div>
+                            <div class="d-inline float-right my-2">
+                                <img ng-src="{{lotterie.image}}" id="lotteryImg">
+                            </div>
+                            <div class="lotteryName d-inline">{{lotterie.productName}}</div>
                         </div>
 
                         <div id="{{lotterie.id}}" class="collapse" aria-labelledby="{{lotterie.productName}}"
@@ -163,8 +160,8 @@
 
                                 <div class="col-sm-12 mt-2 text-left" ng-hide='{{lotterie.complete}}>=100 || alreadyIn'>
 
-                                    <button type="button" class="btn btn-color font-weight-bold btn-block" data-toggle="modal" data-target=".{{lotterie.id}}"
-                                        ng-click="getAndCount($event, lotterie.id);">הצטרף</button>
+                                    <button type="button" class="btn btn-color font-weight-bold btn-block" data-toggle="modal"
+                                        data-target=".{{lotterie.id}}" ng-click="getAndCount($event, lotterie.id);">הצטרף</button>
 
                                     <div class="text-muted text-right littleFont">{{lotterie.complete}}%
                                         משתתפים</div>

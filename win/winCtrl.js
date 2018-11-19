@@ -4,10 +4,6 @@ app.controller('winCtrl', function (loginSrv, $location, $scope, listSrv, $log, 
         $location.path('/login');
     }
 
-    // if (loginSrv.isLoggedIn()) {
-    //     $location.path('/list');
-    // }
-
     $scope.isLogged = function () {
         return loginSrv.isLoggedIn()
     }
