@@ -55,8 +55,9 @@
                             <span class="text-left text-muted littleFontSec">{{winner.time}}</span>
                             <span class="text-right mr-3 d-block littleFont">
                                 <strong>מזל טוב! </strong>זכית בהגרלה על
-                                {{winner.finishLottery}}.</span>
-
+                                {{winner.finishLottery}},  <span class="littleFont text-muted">לחץ <a ng-href="#!/winner" class="font-weight-bold">כאן</a> על מנת לממש את הזכייה.</span></span>
+                            
+                                
                         </li>
 
                         <li class="list-group-item shadow littleFontSec" ng-hide="custom" ng-repeat="loser in losers | orderBy:loser.time:true">
@@ -98,7 +99,7 @@
                         <div class="card-header" id="{{lotterie.productName}}" ng-click="isAlreadyIn(lotterie.id)"
                             data-toggle="collapse" data-target="#{{lotterie.id}}" aria-expanded="false" aria-controls="{{lotterie.id}}">
 
-                                    <div class="d-inline float-right" >
+                                    <div class="d-inline float-right my-2" >
                                         <img ng-src="{{lotterie.image}}" id="lotteryImg">
                                     </div>
                                     <div class="lotteryName d-inline">{{lotterie.productName}}</div>
@@ -109,8 +110,7 @@
 
                             <div class="card-body mb-1">
                                 <div class="row">
-                                    <div class="col-sm-3 mb-2
-                                    ">
+                                    <div class="col-sm-3 mb-2">
 
                                         <div class="col-sm-12 font-weight-bold text-right">תיאור המוצר:
 

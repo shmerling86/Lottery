@@ -76,8 +76,8 @@ a {
 
 @media screen and (max-width: 480px) {
   .close-btn {
-    width: 8%;
-    margin: 0 46%; } }
+    width: 30px;
+    margin: 0 44.5%; } }
 
 #imgSize {
   height: 172px; }

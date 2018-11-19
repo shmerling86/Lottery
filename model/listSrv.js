@@ -128,8 +128,8 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
     function lotteryGen(idxOfLottery) {
 
         var async = $q.defer();
-        var Url = 'https://json-server-heroku-eexxarsqwr.now.sh/lotteries/' + idxOfLottery
-        $http.get(Url).then(function (response) {
+        var url = 'https://json-server-heroku-eexxarsqwr.now.sh/lotteries/' + idxOfLottery
+        $http.get(url).then(function (response) {
             var winnerIdPosition = getRandomNum(0, (((response.data["competitors"]).length) - 1))
 
             async.resolve(response.data["competitors"][winnerIdPosition]);
@@ -140,7 +140,7 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
     }
 
     var winner = []
-    function patchTheWinner(winnerId, finishLottery, time) {
+    function patchTheWinner(winnerId, finishLottery, time, idx, seller) {
 
 
         var async = $q.defer();
@@ -148,7 +148,9 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
 
         winner.push({
             time: time,
-            finishLottery: finishLottery
+            finishLottery: finishLottery,
+            lotterieId: idx,
+            seller: seller
         })
 
         var patch = {
@@ -197,8 +199,8 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
     function getTheWinner(userId) {
 
         var async = $q.defer();
-        var Url = 'https://json-server-heroku-eexxarsqwr.now.sh/users/' + userId
-        $http.get(Url).then(function (lottery) {
+        var url = 'https://json-server-heroku-eexxarsqwr.now.sh/users/' + userId
+        $http.get(url).then(function (lottery) {
 
             async.resolve(lottery.data.winner);
         }, function (err) {
@@ -210,8 +212,8 @@ app.factory('listSrv', function ($http, $q, loginSrv) {
     function getTheLoser(userId) {
 
         var async = $q.defer();
-        var Url = 'https://json-server-heroku-eexxarsqwr.now.sh/users/' + userId
-        $http.get(Url).then(function (lottery) {
+        var url = 'https://json-server-heroku-eexxarsqwr.now.sh/users/' + userId
+        $http.get(url).then(function (lottery) {
 
             async.resolve(lottery.data.loser);
         }, function (err) {

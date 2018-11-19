@@ -13,10 +13,6 @@ app.controller('listCtrl', function ($scope, listSrv, loginSrv, $location, $log)
         $location.path('/login');
     }
 
-  
-
-
-
 
 $scope.custom = true;
 
@@ -26,6 +22,7 @@ $scope.userId = loginSrv.getActiveUser().id;
 listSrv.getTheName($scope.userId).then(function (name) {
     $scope.name = name
 });
+
 
 $scope.toggleCustom = function () {
     $scope.participation = 0;
@@ -71,6 +68,8 @@ $scope.toggleCustom = function () {
         }, function (error) {
             $log.error(error)
         });
+
+
 
         listSrv.getTheLoser($scope.userId).then(function (userDataLoser) {
 
@@ -190,11 +189,6 @@ $scope.getAndCount = function (btn, index) {
             $scope.completePercentage = 100
         }
 
-        // for (var i = 0; i < lotteries.length; i++) {
-        //     moment.locale('he');
-        //     lotteries[i]['startTime'] = moment(lotteries[i]['startTime']).fromNow()
-        // }
-
 
 
         listSrv.getAllCompetitors(index).then(function (competitors) {
@@ -212,7 +206,7 @@ $scope.getAndCount = function (btn, index) {
                         moment.locale('he');
                         $scope.time = moment().format();
 
-                        listSrv.patchTheWinner($scope.idOfWinner, lotteries[index]['productName'], $scope.time).then(function () {
+                        listSrv.patchTheWinner($scope.idOfWinner, lotteries[index]['productName'], $scope.time, lotteries[index]['id'], lotteries[index]['sellerUserId']).then(function () {
                             $scope.lossers = [];
                             for (let i = 0; i < $scope.competitorsId.length; i++) {
                                 if ($scope.competitorsId[i] != $scope.idOfWinner) {

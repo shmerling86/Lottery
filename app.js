@@ -2,16 +2,9 @@ var app = angular.module('myApp', ['ngRoute']);
 
 app.config(function ($routeProvider) {
     $routeProvider
-
-        .when('/', {
-            templateUrl: 'home/home.html',
-            controller: 'navbarCtrl'
-        })
-
         .when('/signup', {
             templateUrl: 'signup/signup.html',
             controller: "signupCtrl"
-
         })
 
         .when('/login', {
@@ -29,10 +22,13 @@ app.config(function ($routeProvider) {
             controller: 'listCtrl'
         })
 
+         .when('/winner', {
+            templateUrl: 'win/winner.html',
+            controller: 'winCtrl'
+        })
+
         .otherwise({
-            redirectTo: '/'
+            redirectTo: '/login'
         });
-
-
 
 })
